@@ -1,7 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dch1jvncgnbkl"]
+[gd_scene load_steps=13 format=3 uid="uid://dch1jvncgnbkl"]
 
 [ext_resource type="Script" path="res://component/audio_generator/audio_signal_generator.gd" id="1_d7tju"]
 [ext_resource type="Script" path="res://src/harmonic.gd" id="2_gp8vn"]
+[ext_resource type="Script" path="res://component/audio_generator/states/attack_state.gd" id="3_cq4gj"]
+[ext_resource type="Script" path="res://component/audio_generator/states/decay_state.gd" id="4_y6ced"]
+[ext_resource type="Script" path="res://component/audio_generator/states/sustain_state.gd" id="5_553oo"]
+[ext_resource type="Script" path="res://component/audio_generator/states/release_state.gd" id="6_epv70"]
+[ext_resource type="Script" path="res://component/audio_generator/states/off_state.gd" id="7_i5di5"]
+[ext_resource type="Script" path="res://component/audio_generator/states/adsr_state_machine.gd" id="8_obisu"]
 
 [sub_resource type="Resource" id="Resource_sc01g"]
 script = ExtResource("2_gp8vn")
@@ -16,17 +22,53 @@ harmonic_strength = 0.5
 [sub_resource type="Resource" id="Resource_fxi8j"]
 script = ExtResource("2_gp8vn")
 harmonic_number = 2
-harmonic_strength = 0.25
+harmonic_strength = 0.5
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_wyc53"]
 mix_rate = 22050.0
-buffer_length = 0.1
+buffer_length = 0.05
 
 [node name="AudioSignalGenerator" type="Node"]
 script = ExtResource("1_d7tju")
 harmonics = Array[ExtResource("2_gp8vn")]([SubResource("Resource_sc01g"), SubResource("Resource_y02m0"), SubResource("Resource_fxi8j")])
+attack = 0.01
+decay = 0.2
+sustain = 0.3
+release = 0.7
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamGenerator_wyc53")
 bus = &"GameTones"
+
+[node name="States" type="Node" parent="."]
+
+[node name="AttackState" type="Node" parent="States" node_paths=PackedStringArray("decay_state", "release_state")]
+script = ExtResource("3_cq4gj")
+decay_state = NodePath("../DecayState")
+release_state = NodePath("../ReleaseState")
+
+[node name="DecayState" type="Node" parent="States" node_paths=PackedStringArray("attack_state", "sustain_state", "release_state")]
+script = ExtResource("4_y6ced")
+attack_state = NodePath("../AttackState")
+sustain_state = NodePath("../SustainState")
+release_state = NodePath("../ReleaseState")
+
+[node name="SustainState" type="Node" parent="States" node_paths=PackedStringArray("attack_state", "release_state")]
+script = ExtResource("5_553oo")
+attack_state = NodePath("../AttackState")
+release_state = NodePath("../ReleaseState")
+
+[node name="ReleaseState" type="Node" parent="States" node_paths=PackedStringArray("attack_state", "off_state")]
+script = ExtResource("6_epv70")
+attack_state = NodePath("../AttackState")
+off_state = NodePath("../OffState")
+
+[node name="OffState" type="Node" parent="States" node_paths=PackedStringArray("attack_state")]
+script = ExtResource("7_i5di5")
+attack_state = NodePath("../AttackState")
+
+[node name="ADSRStateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+unique_name_in_owner = true
+script = ExtResource("8_obisu")
+starting_state = NodePath("../States/OffState")

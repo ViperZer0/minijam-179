@@ -1,14 +1,33 @@
 extends Node
+class_name AudioSignalGenerator
 
 ## The frequency of the base note
 ## cycles per second
+@export_group("Base Audio Properties")
 @export var base_frequency: float = 440.0
 
 @export var harmonics: Array[Harmonic]
+@export_group("ADSR Envelope")
+
+## Time in seconds to reach max volume on gate on
+@export var attack: float = 0.0
+
+## Time in seconds to drop from max volume to sustain volume
+@export var decay: float = 0.0
+
+## From 0-1 how loud sustain volume is
+@export_range(0, 1, 0.05) var sustain: float = 0.0
+
+## Time in seconds to drop from sustain to nothing on gate off
+@export var release: float = 0.0
 
 @onready var audio_player: AudioStreamPlayer = %AudioPlayer
 ## The sample rate is samples per second
 @onready var sample_rate: int = audio_player.stream.mix_rate
+@onready var state_machine: AdsrStateMachine = %ADSRStateMachine
+## Current modified amplitude, from 0 to 1
+var current_amplitude: float = 0.0
+
 
 var _t: float = 0.0
 # We need to track the highest possible amplitude to normalize all amplitudes
@@ -21,12 +40,28 @@ func _ready():
 	audio_player.play()
 	playback = audio_player.get_stream_playback()
 	_max_amplitude = _calc_max()
-	fill_buffer()
+	_fill_buffer()
 
 func _process(_delta: float):
-	fill_buffer()
+	audio_player.volume_db = linear_to_db(current_amplitude)
+	_fill_buffer()
 
-func fill_buffer():
+func _unhandled_input(event):
+	if event.is_action_pressed("play"):
+		print("Start")
+		start_note()
+
+	if event.is_action_released("play"):
+		print("A")
+		stop_note()
+
+func start_note():
+	state_machine.current_state.note_on()
+
+func stop_note():
+	state_machine.current_state.note_off()
+
+func _fill_buffer():
 	# How much to increase _t by
 	var increment: float = 1.0 / sample_rate
 	var frames_available = playback.get_frames_available()
@@ -48,5 +83,3 @@ func _get_amplitude_at(t: float) -> float:
 		cur_total += harmonic.harmonic_strength * sin((harmonic.harmonic_number + 1) * base_frequency * TAU * t)
 
 	return cur_total / _max_amplitude
-
-
