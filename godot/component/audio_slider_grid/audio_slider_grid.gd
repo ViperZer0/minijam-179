@@ -5,17 +5,11 @@ extends HBoxContainer
 @export_file("*.tscn") var audio_slider_path = ""
 @onready var _audio_slider_scene: PackedScene = load(audio_slider_path)
 
-@onready var _audio_generator: AudioSignalGenerator = %AudioSignalGenerator
-
 func _ready():
 	for i in range(0, num_harmonics):
 		var slider = _audio_slider_scene.instantiate()
 		slider.add_to_group("sliders")
 		add_child(slider)
-
-func _process(_delta: float):
-	var harmonics = get_harmonics()
-	_audio_generator.harmonics = harmonics
 
 func get_harmonics() -> Array[Harmonic]:
 	var harmonics: Array[Harmonic]
