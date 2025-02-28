@@ -8,5 +8,5 @@ class_name Harmonic
 @export_range(0, 1, 0.05) var harmonic_strength: float
 
 func _init(h_number := 0, h_strength = 0.0):
-	harmonic_strength = h_number
+	harmonic_number = h_number
 	harmonic_strength = h_strength

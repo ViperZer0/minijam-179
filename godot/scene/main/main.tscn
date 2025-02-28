@@ -1,8 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2bteh4026l8c"]
+[gd_scene load_steps=8 format=3 uid="uid://d2bteh4026l8c"]
 
 [ext_resource type="PackedScene" uid="uid://dch1jvncgnbkl" path="res://component/audio_generator/audio_signal_generator.tscn" id="1_4gvmu"]
 [ext_resource type="Script" path="res://scene/main/main.gd" id="1_4r6h2"]
-[ext_resource type="PackedScene" uid="uid://crxqel5e6wmer" path="res://component/audio_slider_grid/audio_slider_grid.tscn" id="2_8de7o"]
+[ext_resource type="Script" path="res://src/harmonic.gd" id="3_errh0"]
+[ext_resource type="PackedScene" uid="uid://crxqel5e6wmer" path="res://component/audio_slider_grid/audio_slider_grid.tscn" id="3_kn28c"]
+[ext_resource type="Script" path="res://src/harmonics.gd" id="4_q0oph"]
+
+[sub_resource type="Resource" id="Resource_fbmd4"]
+script = ExtResource("3_errh0")
+harmonic_number = 0
+harmonic_strength = 1.0
+
+[sub_resource type="Resource" id="Resource_s4bfo"]
+script = ExtResource("4_q0oph")
+harmonics = Array[ExtResource("3_errh0")]([SubResource("Resource_fbmd4")])
 
 [node name="Main" type="PanelContainer"]
 anchors_preset = 15
@@ -11,9 +22,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4r6h2")
+num_harmonics = 8
 
 [node name="RandomTone" parent="." instance=ExtResource("1_4gvmu")]
 unique_name_in_owner = true
+harmonics = SubResource("Resource_s4bfo")
 
 [node name="UserTone" parent="." instance=ExtResource("1_4gvmu")]
 unique_name_in_owner = true
@@ -30,7 +43,7 @@ text = "Play Random Tone"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="AudioSliderGrid" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_8de7o")]
+[node name="AudioSliderGrid" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_kn28c")]
 unique_name_in_owner = true
 layout_mode = 2
 

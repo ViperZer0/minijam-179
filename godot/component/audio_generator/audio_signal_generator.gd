@@ -6,16 +6,17 @@ class_name AudioSignalGenerator
 @export_group("Base Audio Properties")
 @export var base_frequency: float = 440.0
 
-@export var harmonics: Array[Harmonic]:
+@export var harmonics: Harmonics:
 	get:
 		return _harmonics
 	set(value):
 		_harmonics = value
-		# recalculate max amplitude
-		_max_amplitude = _calc_max()
+		if value != null:
+			# recalculate max amplitude
+			_max_amplitude = _calc_max()
 
 @export_group("ADSR Envelope")
-var _harmonics: Array[Harmonic]
+var _harmonics: Harmonics
 
 ## Time in seconds to reach max volume on gate on
 @export var attack: float = 0.0
@@ -46,15 +47,10 @@ var _max_amplitude: float = 0.0
 # The currently playing sound
 var playback: AudioStreamGeneratorPlayback
 
-func _ready():
-	audio_player.play()
-	playback = audio_player.get_stream_playback()
-	_max_amplitude = _calc_max()
-	_fill_buffer()
-
 func _process(_delta: float):
-	audio_player.volume_db = linear_to_db(current_amplitude)
-	_fill_buffer()
+	if playback != null:
+		audio_player.volume_db = linear_to_db(current_amplitude)
+		_fill_buffer()
 
 #func _unhandled_input(event):
 	#if event.is_action_pressed("play"):
@@ -64,6 +60,19 @@ func _process(_delta: float):
 	#if event.is_action_released("play"):
 		#print("A")
 		#stop_note()
+
+func start_processing(harmonics: Harmonics):
+	if harmonics == null:
+		# Generate no harmonics at all
+		_harmonics = Harmonics.new()
+	else:
+		_harmonics = harmonics
+
+	audio_player.play()
+	playback = audio_player.get_stream_playback()
+	_max_amplitude = _calc_max()
+	print(_max_amplitude)
+	_fill_buffer()
 
 func start_note():
 	_gate = true
@@ -90,14 +99,17 @@ func _fill_buffer():
 
 func _calc_max() -> float:
 	var max_amplitude: float = 0.0
-	for harmonic in _harmonics:
+	for harmonic in _harmonics.harmonics:
 		max_amplitude += harmonic.harmonic_strength
 	return max_amplitude
 
 ## Returns an amplitude between 0 and 1 based on the harmonics and stuff.
 func _get_amplitude_at(t: float) -> float:
 	var cur_total: float = 0.0
-	for harmonic in _harmonics:
+	for harmonic in _harmonics.harmonics:
 		cur_total += harmonic.harmonic_strength * sin((harmonic.harmonic_number + 1) * base_frequency * TAU * t)
+
+	if _max_amplitude == 0.0:
+		return 0.0
 
 	return cur_total / _max_amplitude
