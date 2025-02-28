@@ -1,0 +1,6 @@
+- [ ] Generate random harmonic frequencies
+	- [ ] Or do custom levels, that might be best
+- [ ] Quantize frequencies to notes and scales and stuff
+- [ ] Error checking (i.e check if note is sufficiently close to target note)
+- [ ] Sound waveform or spectral visualization
+- [ ] Improve UI, do lots of custom theming
