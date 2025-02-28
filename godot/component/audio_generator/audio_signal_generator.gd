@@ -15,6 +15,7 @@ class_name AudioSignalGenerator
 			# recalculate max amplitude
 			_max_amplitude = _calc_max()
 
+@export_range(-1, 1, 0.1) var amplitude_scaling: float = 1.0
 @export_group("ADSR Envelope")
 var _harmonics: Harmonics
 
@@ -114,4 +115,4 @@ func _get_amplitude_at(t: float) -> float:
 	if _max_amplitude == 0.0:
 		return 0.0
 
-	return cur_total / _max_amplitude
+	return cur_total / _max_amplitude * amplitude_scaling

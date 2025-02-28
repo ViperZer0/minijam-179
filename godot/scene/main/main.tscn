@@ -39,6 +39,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+y_scaling = null
 
 [node name="PlayRandomToneButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -49,6 +50,7 @@ text = "Play Random Tone"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+y_scaling = null
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

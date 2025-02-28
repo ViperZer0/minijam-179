@@ -14,6 +14,16 @@ class_name AudioVisualizer
 
 var _harmonics: Harmonics
 
+@export_range(-1, 1, 0.1) var y_scaling: float:
+	get:
+		return _y_scaling
+	set(value):
+		_y_scaling = value
+		if line != null:
+			calc_line()
+
+var _y_scaling: float = 1.0
+
 @onready var line: Line2D = $Line2D
 
 #func _process(_delta) -> void:
@@ -36,7 +46,7 @@ func calc_line() -> void:
 			cur_total += harmonic.harmonic_strength * sin((harmonic.harmonic_number + 1) * TAU * i / resolution)
 
 		# Normalize current y index to be between -1 and 1.
-		var normalized_total = cur_total / max_amplitude
+		var normalized_total = cur_total / max_amplitude * _y_scaling
 		# Normalize current y index to be between 0 and 1
 		var normalized_y = normalized_total / 2 + 0.5
 		# Now we scale it
