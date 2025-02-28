@@ -105,7 +105,7 @@ func _calc_max() -> float:
 		max_amplitude += harmonic.harmonic_strength
 	return max_amplitude
 
-## Returns an amplitude between 0 and 1 based on the harmonics and stuff.
+## Returns an amplitude between -1 and 1 based on the harmonics and stuff.
 func _get_amplitude_at(t: float) -> float:
 	var cur_total: float = 0.0
 	for harmonic in _harmonics.harmonics:

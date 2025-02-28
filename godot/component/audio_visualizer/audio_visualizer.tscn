@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://cp1b50qlsicsu"]
+
+[ext_resource type="Script" path="res://component/audio_visualizer/audio_visualizer.gd" id="1_dpli4"]
+[ext_resource type="Script" path="res://src/harmonic.gd" id="2_vu38n"]
+[ext_resource type="Script" path="res://src/harmonics.gd" id="3_s8ulo"]
+
+[sub_resource type="Resource" id="Resource_vwfyw"]
+script = ExtResource("2_vu38n")
+harmonic_number = 0
+harmonic_strength = 0.0
+
+[sub_resource type="Resource" id="Resource_tx0k3"]
+script = ExtResource("2_vu38n")
+harmonic_number = 1
+harmonic_strength = 0.0
+
+[sub_resource type="Resource" id="Resource_qmu66"]
+script = ExtResource("2_vu38n")
+harmonic_number = 2
+harmonic_strength = 0.5
+
+[sub_resource type="Resource" id="Resource_e866w"]
+script = ExtResource("2_vu38n")
+harmonic_number = 4
+harmonic_strength = 1.0
+
+[sub_resource type="Resource" id="Resource_3qtwt"]
+script = ExtResource("3_s8ulo")
+harmonics = Array[ExtResource("2_vu38n")]([SubResource("Resource_vwfyw"), SubResource("Resource_tx0k3"), SubResource("Resource_qmu66"), SubResource("Resource_e866w")])
+
+[node name="AudioVisualizer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dpli4")
+resolution = 256
+harmonics = SubResource("Resource_3qtwt")
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 5.0
