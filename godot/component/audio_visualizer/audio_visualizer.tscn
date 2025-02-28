@@ -38,7 +38,7 @@ grow_vertical = 2
 script = ExtResource("1_dpli4")
 resolution = 256
 harmonics = SubResource("Resource_3qtwt")
-y_scaling = null
+y_scaling = 1.0
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 5.0

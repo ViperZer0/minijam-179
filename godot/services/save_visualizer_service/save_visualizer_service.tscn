@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://de7ojw5ixpoxw"]
+
+[ext_resource type="Script" path="res://services/save_visualizer_service/save_visualizer_service.gd" id="1_ryqqo"]
+
+[node name="SaveVisualizerService" type="Node"]
+script = ExtResource("1_ryqqo")

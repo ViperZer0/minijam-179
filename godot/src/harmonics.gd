@@ -86,4 +86,3 @@ static func generate_random_harmonics(num_harmonics: int, include_harmonic_chanc
 				new_harmonics.harmonics.push_back(Harmonic.new(i, 0.0))
 
 	return new_harmonics
-

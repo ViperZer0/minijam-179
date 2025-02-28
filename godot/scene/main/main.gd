@@ -1,5 +1,9 @@
 extends PanelContainer
 @export var num_harmonics: int = 16
+@export var error_threshold: float = 0.05
+
+@export_file("*.tscn") var win_transition_path: String = ""
+@onready var _win_transition_scene: PackedScene = load(win_transition_path)
 
 @onready var random_tone: AudioSignalGenerator = %RandomTone
 @onready var random_tone_visualizer: AudioVisualizer = %RandomToneVisualizer
@@ -23,8 +27,19 @@ func _process(_delta) -> void:
 		user_tone.harmonics = user_harmonics
 		user_tone_visualizer.harmonics = user_harmonics
 
+func move_to_win_scene() -> void:
+	# Set up and save positions of the visualizers for animations first
+	var save_visualizer_service: SaveVisualizerService = ServiceProvider.get_service("SaveVisualizerService")
+	save_visualizer_service.save_user_visualizer(user_tone_visualizer)
+	save_visualizer_service.save_random_visualizer(random_tone_visualizer)
+	# Now we can transition
+	get_tree().change_scene_to_packed(_win_transition_scene)
+
 func _on_check_difference_button_pressed() -> void:
-	print(random_harmonics.error(audio_slider_grid.get_harmonics().normalize()))
+	var error = random_harmonics.error(audio_slider_grid.get_harmonics().normalize())
+	print(error)
+	#if error < error_threshold:
+	move_to_win_scene()
 
 func _on_play_user_tone_button_pressed() -> void:
 	user_tone.toggle_note()
