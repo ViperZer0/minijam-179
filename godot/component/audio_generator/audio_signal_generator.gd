@@ -36,6 +36,9 @@ var _harmonics: Array[Harmonic]
 ## Current modified amplitude, from 0 to 1
 var current_amplitude: float = 0.0
 
+# True if the note is on, false otherwise.
+# Mostly just used for toggling notes
+var _gate: bool = false
 var _t: float = 0.0
 # We need to track the highest possible amplitude to normalize all amplitudes
 var _max_amplitude: float = 0.0
@@ -53,20 +56,28 @@ func _process(_delta: float):
 	audio_player.volume_db = linear_to_db(current_amplitude)
 	_fill_buffer()
 
-func _unhandled_input(event):
-	if event.is_action_pressed("play"):
-		print("Start")
-		start_note()
+#func _unhandled_input(event):
+	#if event.is_action_pressed("play"):
+		#print("Start")
+		#start_note()
 
-	if event.is_action_released("play"):
-		print("A")
-		stop_note()
+	#if event.is_action_released("play"):
+		#print("A")
+		#stop_note()
 
 func start_note():
+	_gate = true
 	state_machine.current_state.note_on()
 
 func stop_note():
+	_gate = false
 	state_machine.current_state.note_off()
+
+func toggle_note():
+	if _gate:
+		stop_note()
+	else:
+		start_note()
 
 func _fill_buffer():
 	# How much to increase _t by
