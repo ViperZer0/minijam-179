@@ -43,6 +43,8 @@ var _gate: bool = false
 var _t: float = 0.0
 # We need to track the highest possible amplitude to normalize all amplitudes
 var _max_amplitude: float = 0.0
+# how long it takes to do a full period, for looping _t
+@onready var _period: float = 1.0 / base_frequency
 
 # The currently playing sound
 var playback: AudioStreamGeneratorPlayback
@@ -95,7 +97,7 @@ func _fill_buffer():
 	for i in range(frames_available):
 		# Audio is in stereo, x is left and y is right
 		playback.push_frame(Vector2.ONE * _get_amplitude_at(_t))
-		_t += increment
+		_t = fmod(_t + increment, _period)
 
 func _calc_max() -> float:
 	var max_amplitude: float = 0.0
