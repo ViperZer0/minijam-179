@@ -8,7 +8,8 @@ var random_harmonics: Harmonics
 
 func _ready() -> void:
 	audio_slider_grid.num_harmonics = num_harmonics
-	random_harmonics = Harmonics.generate_random_harmonics(num_harmonics)
+	random_harmonics = Harmonics.generate_random_harmonics(num_harmonics, 0.35)
+	random_harmonics.normalize()
 	random_tone.start_processing(random_harmonics)
 	user_tone.start_processing(audio_slider_grid.get_harmonics())
 
@@ -17,7 +18,7 @@ func _process(_delta) -> void:
 		user_tone.harmonics = audio_slider_grid.get_harmonics()
 
 func _on_check_difference_button_pressed() -> void:
-	print(random_harmonics.error(audio_slider_grid.get_harmonics()))
+	print(random_harmonics.error(audio_slider_grid.get_harmonics().normalize()))
 
 func _on_play_user_tone_button_pressed() -> void:
 	user_tone.toggle_note()

@@ -48,11 +48,42 @@ func error(other: Harmonics) -> float:
 	# Normalize/average error and return
 	return total_error / max(harmonics.size(), other.harmonics.size())
 
-static func generate_random_harmonics(num_harmonics: int) -> Harmonics:
+## Returns the harmonic with the highest strength
+## Returns a harmonic index of -1 if there are no active harmonics
+func get_loudest_harmonic() -> Harmonic:
+	var max_harmonic: Harmonic = Harmonic.new(-1, 0.0)
+	for harmonic in harmonics:
+		if harmonic.harmonic_strength > max_harmonic.harmonic_strength:
+			max_harmonic = harmonic
+
+	return max_harmonic
+
+## Normalizes the harmonics, making the loudest one equal to 1 and all the others proportional to that.
+func normalize() -> Harmonics:
+	var max_harmonic = get_loudest_harmonic()
+	# If there are literally no active harmonics, we just leave them all at 0
+	if max_harmonic.harmonic_number == -1:
+		return
+
+	var scaling = 1.0 / max_harmonic.harmonic_strength
+	for harmonic in harmonics:
+		harmonic.harmonic_strength = harmonic.harmonic_strength * scaling
+
+	return self
+
+static func generate_random_harmonics(num_harmonics: int, include_harmonic_chance: float) -> Harmonics:
 	var new_harmonics = Harmonics.new()
-	for i in range(0, num_harmonics):
-		var strength = randf()
-		new_harmonics.harmonics.push_back(Harmonic.new(i, strength))
+	var any_harmonics_generated: bool = false
+	## Keep trying until we generate at least *one* harmonic
+	while !any_harmonics_generated:
+		new_harmonics = Harmonics.new()
+		for i in range(0, num_harmonics):
+			if randf() < include_harmonic_chance:
+				var strength = randf()
+				new_harmonics.harmonics.push_back(Harmonic.new(i, strength))
+				any_harmonics_generated = true
+			else:
+				new_harmonics.harmonics.push_back(Harmonic.new(i, 0.0))
 
 	return new_harmonics
 
