@@ -6,8 +6,16 @@ class_name AudioSignalGenerator
 @export_group("Base Audio Properties")
 @export var base_frequency: float = 440.0
 
-@export var harmonics: Array[Harmonic]
+@export var harmonics: Array[Harmonic]:
+	get:
+		return _harmonics
+	set(value):
+		_harmonics = value
+		# recalculate max amplitude
+		_max_amplitude = _calc_max()
+
 @export_group("ADSR Envelope")
+var _harmonics: Array[Harmonic]
 
 ## Time in seconds to reach max volume on gate on
 @export var attack: float = 0.0
@@ -27,7 +35,6 @@ class_name AudioSignalGenerator
 @onready var state_machine: AdsrStateMachine = %ADSRStateMachine
 ## Current modified amplitude, from 0 to 1
 var current_amplitude: float = 0.0
-
 
 var _t: float = 0.0
 # We need to track the highest possible amplitude to normalize all amplitudes
@@ -72,14 +79,14 @@ func _fill_buffer():
 
 func _calc_max() -> float:
 	var max_amplitude: float = 0.0
-	for harmonic in harmonics:
+	for harmonic in _harmonics:
 		max_amplitude += harmonic.harmonic_strength
 	return max_amplitude
 
 ## Returns an amplitude between 0 and 1 based on the harmonics and stuff.
 func _get_amplitude_at(t: float) -> float:
 	var cur_total: float = 0.0
-	for harmonic in harmonics:
+	for harmonic in _harmonics:
 		cur_total += harmonic.harmonic_strength * sin((harmonic.harmonic_number + 1) * base_frequency * TAU * t)
 
 	return cur_total / _max_amplitude

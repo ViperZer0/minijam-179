@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dch1jvncgnbkl"]
+[gd_scene load_steps=12 format=3 uid="uid://dch1jvncgnbkl"]
 
 [ext_resource type="Script" path="res://component/audio_generator/audio_signal_generator.gd" id="1_d7tju"]
 [ext_resource type="Script" path="res://src/harmonic.gd" id="2_gp8vn"]
@@ -16,21 +16,16 @@ harmonic_strength = 1.0
 
 [sub_resource type="Resource" id="Resource_y02m0"]
 script = ExtResource("2_gp8vn")
-harmonic_number = 1
-harmonic_strength = 0.5
-
-[sub_resource type="Resource" id="Resource_fxi8j"]
-script = ExtResource("2_gp8vn")
-harmonic_number = 2
+harmonic_number = 3
 harmonic_strength = 0.5
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_wyc53"]
 mix_rate = 22050.0
-buffer_length = 0.05
+buffer_length = 0.1
 
 [node name="AudioSignalGenerator" type="Node"]
 script = ExtResource("1_d7tju")
-harmonics = Array[ExtResource("2_gp8vn")]([SubResource("Resource_sc01g"), SubResource("Resource_y02m0"), SubResource("Resource_fxi8j")])
+harmonics = Array[ExtResource("2_gp8vn")]([SubResource("Resource_sc01g"), SubResource("Resource_y02m0")])
 attack = 0.01
 decay = 0.2
 sustain = 0.3
