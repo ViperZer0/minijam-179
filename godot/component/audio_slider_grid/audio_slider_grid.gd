@@ -1,4 +1,5 @@
 extends HBoxContainer
+class_name AudioSliderGrid
 
 @export var num_harmonics: int = 16
 

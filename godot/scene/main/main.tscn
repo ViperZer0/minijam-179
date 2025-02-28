@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2bteh4026l8c"]
+
+[ext_resource type="PackedScene" uid="uid://dch1jvncgnbkl" path="res://component/audio_generator/audio_signal_generator.tscn" id="1_4gvmu"]
+[ext_resource type="Script" path="res://scene/main/main.gd" id="1_4r6h2"]
+[ext_resource type="PackedScene" uid="uid://crxqel5e6wmer" path="res://component/audio_slider_grid/audio_slider_grid.tscn" id="2_8de7o"]
+
+[node name="Main" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4r6h2")
+
+[node name="RandomTone" parent="." instance=ExtResource("1_4gvmu")]
+unique_name_in_owner = true
+
+[node name="UserTone" parent="." instance=ExtResource("1_4gvmu")]
+unique_name_in_owner = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PlayRandomToneButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Play Random Tone"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AudioSliderGrid" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_8de7o")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PlayUserToneButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Play User Tone"
+
+[node name="CheckDifferenceButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Check Answer"
+
+[connection signal="pressed" from="VBoxContainer/PlayRandomToneButton" to="." method="_on_play_random_tone_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/PlayUserToneButton" to="." method="_on_play_user_tone_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/CheckDifferenceButton" to="." method="_on_check_difference_button_pressed"]

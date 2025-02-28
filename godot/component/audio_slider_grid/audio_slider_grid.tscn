@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://crxqel5e6wmer"]
+[gd_scene load_steps=2 format=3 uid="uid://crxqel5e6wmer"]
 
 [ext_resource type="Script" path="res://component/audio_slider_grid/audio_slider_grid.gd" id="1_1cmwr"]
-[ext_resource type="PackedScene" uid="uid://dch1jvncgnbkl" path="res://component/audio_generator/audio_signal_generator.tscn" id="2_lkpub"]
 
 [node name="AudioSliderGrid" type="HBoxContainer"]
 anchors_preset = 15
@@ -11,6 +10,3 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1cmwr")
 audio_slider_path = "res://component/audio_slider/audio_slider.tscn"
-
-[node name="AudioSignalGenerator" parent="." instance=ExtResource("2_lkpub")]
-unique_name_in_owner = true
