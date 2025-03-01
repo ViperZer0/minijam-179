@@ -81,10 +81,10 @@ static func generate_random_harmonics(num_harmonics: int, num_include_harmonics:
 	# Add x number of harmonics
 	for i in range(0, num_include_harmonics):
 		# pick one at random
-		var candidate_harmonic: Harmonic = new_harmonics.harmonics[randi() % new_harmonics.size()]
+		var candidate_harmonic: Harmonic = new_harmonics.harmonics[randi() % new_harmonics.harmonics.size()]
 		# Keep searching until we find one that isn't already chosen
 		while candidate_harmonic.harmonic_strength > 0.0:
-			candidate_harmonic = new_harmonics.harmonics[randi() % new_harmonics.size()]
+			candidate_harmonic = new_harmonics.harmonics[randi() % new_harmonics.harmonics.size()]
 
 		# Set the new harmonics strength
 		candidate_harmonic.harmonic_strength = randf()

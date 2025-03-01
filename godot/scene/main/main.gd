@@ -19,7 +19,7 @@ var random_harmonics: Harmonics
 
 func _ready() -> void:
 	audio_slider_grid.num_harmonics = num_harmonics
-	random_harmonics = Harmonics.generate_random_harmonics(num_harmonics, harmonic_chance).normalize()
+	random_harmonics = Harmonics.generate_random_harmonics(num_harmonics, num_target_harmonics).normalize()
 	random_tone.start_processing(random_harmonics)
 	random_tone_visualizer.harmonics = random_harmonics
 	# We should call this deferred so it updates to the size of the container

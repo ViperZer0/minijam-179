@@ -29,6 +29,8 @@ theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 script = ExtResource("1_4r6h2")
 num_harmonics = 8
+error_threshold = null
+num_target_harmonics = null
 win_transition_path = "res://scene/win_transition/win_transition.tscn"
 
 [node name="RandomTone" parent="." instance=ExtResource("1_4gvmu")]
