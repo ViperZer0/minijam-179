@@ -6,17 +6,17 @@ extends MarginContainer
 @export_group("Easy Parameters")
 @export var easy_min_num_harmonics: int = 2
 @export var easy_max_num_harmonics: int = 3
-@export var easy_error_margin: float = 0.1
+@export var easy_error_margin: float = 0.05
 
 @export_group("Medium Parameters")
 @export var medium_min_num_harmonics: int = 3
 @export var medium_max_num_harmonics: int = 4
-@export var medium_error_margin: float = 0.07
+@export var medium_error_margin: float = 0.03
 
 @export_group("Hard Parameters")
 @export var hard_min_num_harmonics: int = 3
 @export var hard_max_num_harmonics: int = 5
-@export var hard_error_margin: float = 0.05
+@export var hard_error_margin: float = 0.01
 
 @onready var main_scene: Main = load(main_scene_path).instantiate()
 @onready var back_scene: Control = load(back_scene_path).instantiate()
