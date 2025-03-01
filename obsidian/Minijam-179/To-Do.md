@@ -13,3 +13,4 @@
 	- [ ] Sample rate, buffer length
 - [ ] About page
 - [ ] Flesh out background
+- [ ] Add resource for difficulty modifiers
