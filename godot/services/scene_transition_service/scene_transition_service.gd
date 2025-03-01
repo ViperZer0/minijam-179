@@ -39,6 +39,7 @@ var _to_scene_scale: float = 1.0
 	set(value):
 		_to_scene_opacity = value
 		if to_scene != null:
+			print(to_scene.modulate.a)
 			_set_scene_opacity(to_scene, value)
 
 var _to_scene_opacity: float = 1.0
@@ -47,10 +48,10 @@ var _to_scene_opacity: float = 1.0
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 ## Loads the next scene and zooms into it from this scene
-func zoom_in(from: Control, to: PackedScene) -> void:
+func zoom_in(from: Control, to: Control) -> void:
 	from_scene = from
-	to_scene = to.instantiate()
-	add_child(to_scene)
+	to_scene = to
+	get_tree().root.add_child(to)
 	animation_player.play("zoom_in")
 
 func _scale_scene(scene: Control, factor: float) -> void:
