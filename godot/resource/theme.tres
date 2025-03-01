@@ -1,17 +1,33 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cosemsd7m0hb2"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cosemsd7m0hb2"]
 
+[ext_resource type="FontFile" uid="uid://br43sp0opqhip" path="res://resource/fonts/static/Quicksand-Regular.ttf" id="1_4q7s8"]
 [ext_resource type="FontFile" uid="uid://df68ib8aedcuf" path="res://resource/fonts/Quicksand-VariableFont_wght.ttf" id="1_vtbg8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwg2w"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g0211"]
 content_margin_top = 16.0
 content_margin_bottom = 16.0
-bg_color = Color(0.51, 0.567167, 1, 1)
+bg_color = Color(0.312979, 0.261698, 0.999947, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwg2w"]
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.400379, 0.434028, 0.999987, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
 
 [resource]
+Button/fonts/font = ExtResource("1_4q7s8")
+Button/styles/hover = SubResource("StyleBoxFlat_g0211")
 Button/styles/normal = SubResource("StyleBoxFlat_vwg2w")
 Label/fonts/font = ExtResource("1_vtbg8")
 TitleLabel/base_type = &"Label"
