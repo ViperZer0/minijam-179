@@ -4,7 +4,9 @@
 [ext_resource type="FontFile" uid="uid://df68ib8aedcuf" path="res://resource/fonts/Quicksand-VariableFont_wght.ttf" id="1_vtbg8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g0211"]
+content_margin_left = 16.0
 content_margin_top = 16.0
+content_margin_right = 16.0
 content_margin_bottom = 16.0
 bg_color = Color(0.312979, 0.261698, 0.999947, 1)
 corner_radius_top_left = 4
@@ -14,7 +16,9 @@ corner_radius_bottom_left = 4
 shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwg2w"]
+content_margin_left = 16.0
 content_margin_top = 16.0
+content_margin_right = 16.0
 content_margin_bottom = 16.0
 bg_color = Color(0.400379, 0.434028, 0.999987, 1)
 corner_radius_top_left = 4

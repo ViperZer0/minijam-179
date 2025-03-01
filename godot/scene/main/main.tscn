@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2bteh4026l8c"]
+[gd_scene load_steps=10 format=3 uid="uid://d2bteh4026l8c"]
 
 [ext_resource type="PackedScene" uid="uid://dch1jvncgnbkl" path="res://component/audio_generator/audio_signal_generator.tscn" id="1_4gvmu"]
 [ext_resource type="Script" path="res://scene/main/main.gd" id="1_4r6h2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://crxqel5e6wmer" path="res://component/audio_slider_grid/audio_slider_grid.tscn" id="3_kn28c"]
 [ext_resource type="Script" path="res://src/harmonics.gd" id="4_q0oph"]
 [ext_resource type="PackedScene" uid="uid://cp1b50qlsicsu" path="res://component/audio_visualizer/audio_visualizer.tscn" id="5_conxe"]
+[ext_resource type="PackedScene" uid="uid://c4crw1xwvc5ki" path="res://component/sound_button/sound_button.tscn" id="7_j2sro"]
 
 [sub_resource type="Resource" id="Resource_fbmd4"]
 script = ExtResource("3_errh0")
@@ -16,12 +17,16 @@ harmonic_strength = 1.0
 script = ExtResource("4_q0oph")
 harmonics = Array[ExtResource("3_errh0")]([SubResource("Resource_fbmd4")])
 
-[node name="Main" type="PanelContainer"]
+[node name="Main" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
 script = ExtResource("1_4r6h2")
 num_harmonics = 8
 win_transition_path = "res://scene/win_transition/win_transition.tscn"
@@ -33,45 +38,78 @@ harmonics = SubResource("Resource_s4bfo")
 [node name="UserTone" parent="." instance=ExtResource("1_4gvmu")]
 unique_name_in_owner = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="RandomToneVisualizer" parent="VBoxContainer" instance=ExtResource("5_conxe")]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="RandomToneVisualizer" parent="HBoxContainer/VBoxContainer/MarginContainer" instance=ExtResource("5_conxe")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="UserToneVisualizer" parent="HBoxContainer/VBoxContainer/MarginContainer2" instance=ExtResource("5_conxe")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PlayRandomToneButton" type="Button" parent="VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Play Random Tone"
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="UserToneVisualizer" parent="VBoxContainer" instance=ExtResource("5_conxe")]
+[node name="AudioSliderGrid" parent="HBoxContainer/VBoxContainer/MarginContainer3" instance=ExtResource("3_kn28c")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="PlayRandomToneButton" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("7_j2sro")]
 layout_mode = 2
 size_flags_vertical = 3
+toggle_mode = true
+text = "Listen
+"
 
-[node name="AudioSliderGrid" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_kn28c")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="PlayUserToneButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="PlayUserToneButton" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("7_j2sro")]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Play User Tone"
+toggle_mode = true
+text = "Play"
 
-[node name="CheckDifferenceButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="CheckDifferenceButton" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("7_j2sro")]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Check Answer"
+text = "Check Answer
+"
 
-[connection signal="pressed" from="VBoxContainer/PlayRandomToneButton" to="." method="_on_play_random_tone_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/PlayUserToneButton" to="." method="_on_play_user_tone_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/CheckDifferenceButton" to="." method="_on_check_difference_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/PlayRandomToneButton" to="." method="_on_play_random_tone_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/PlayUserToneButton" to="." method="_on_play_user_tone_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/CheckDifferenceButton" to="." method="_on_check_difference_button_pressed"]

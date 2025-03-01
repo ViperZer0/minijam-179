@@ -1,4 +1,4 @@
-extends PanelContainer
+extends MarginContainer
 ## Number of harmonics to use
 @export var num_harmonics: int = 16
 ## Threshold before a given answer is approved as a success
@@ -65,6 +65,9 @@ func move_to_win_scene() -> void:
 	user_tone.start_note()
 
 func _on_check_difference_button_pressed() -> void:
+	if audio_slider_grid.get_harmonics().normalize() == null:
+		# Treat this as an error
+		return
 	var error = random_harmonics.error(audio_slider_grid.get_harmonics().normalize())
 	if error < error_threshold:
 		move_to_win_scene()
