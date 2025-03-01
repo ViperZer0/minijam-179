@@ -9,4 +9,7 @@
 	- [ ] Return to main?
 - [ ] Make tutorial
 - [ ] Add settings window
+	- [ ] SFX and music sliders
+	- [ ] Sample rate, buffer length
+- [ ] About page
 - [ ] Flesh out background
