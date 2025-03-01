@@ -41,6 +41,23 @@ func move_to_win_scene() -> void:
 	# Take up space
 	random_tone_visualizer.modulate.a = 0
 	user_tone_visualizer.modulate.a = 0
+	# Stop any existing notes
+	random_tone.stop_note()
+	user_tone.stop_note()
+	# Set adsr??? Super hacky????
+	random_tone.attack = 0.0
+	random_tone.decay = 4.0
+	random_tone.sustain = 0.0
+	random_tone.release = 0.0
+	user_tone.attack = 0.0
+	user_tone.decay = 4.0
+	user_tone.sustain = 0.0
+	user_tone.release = 0.0
+	random_tone.start_note()
+	user_tone.start_note()
+
+
+
 
 func _on_check_difference_button_pressed() -> void:
 	var error = random_harmonics.error(audio_slider_grid.get_harmonics().normalize())

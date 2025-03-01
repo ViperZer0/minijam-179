@@ -24,7 +24,8 @@ func enter():
 
 func _process(delta: float):
 	if _is_active:
-		current_amplitude = min(sustain_level, current_amplitude + (1.0 - sustain_level) / decay_time * delta)
+		current_amplitude = max(sustain_level, current_amplitude - (1.0 - sustain_level) / decay_time * delta)
+		print(current_amplitude)
 		audio_generator.current_amplitude = current_amplitude
 
 		if current_amplitude <= sustain_level:
