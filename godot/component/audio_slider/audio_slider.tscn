@@ -1,4 +1,13 @@
-[gd_scene format=3 uid="uid://b6g4asgd0m1tr"]
+[gd_scene load_steps=4 format=3 uid="uid://b6g4asgd0m1tr"]
+
+[ext_resource type="Script" path="res://component/audio_slider/audio_slider.gd" id="1_b3qr1"]
+[ext_resource type="AudioStream" uid="uid://b4w2n4hfhbs5n" path="res://component/sound_button/click.wav" id="2_fr16w"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vp62b"]
+random_pitch = 1.02
+random_volume_offset_db = 4.0
+streams_count = 1
+stream_0/stream = ExtResource("2_fr16w")
 
 [node name="AudioSlider" type="VSlider"]
 anchors_preset = 15
@@ -9,3 +18,10 @@ grow_vertical = 2
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
+script = ExtResource("1_b3qr1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_vp62b")
+bus = &"SFX"
+
+[connection signal="drag_started" from="." to="." method="_on_drag_started"]
