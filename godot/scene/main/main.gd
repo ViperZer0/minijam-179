@@ -27,6 +27,10 @@ func _process(_delta) -> void:
 		user_tone.harmonics = user_harmonics
 		user_tone_visualizer.harmonics = user_harmonics
 
+func _unhandled_input(event: InputEvent) -> void:
+	if OS.is_debug_build() and event.is_action_pressed("force_win"):
+		move_to_win_scene()
+
 func move_to_win_scene() -> void:
 	# Set up and save positions of the visualizers for animations first
 	var save_visualizer_service: SaveVisualizerService = ServiceProvider.get_service("SaveVisualizerService")
@@ -56,14 +60,10 @@ func move_to_win_scene() -> void:
 	random_tone.start_note()
 	user_tone.start_note()
 
-
-
-
 func _on_check_difference_button_pressed() -> void:
 	var error = random_harmonics.error(audio_slider_grid.get_harmonics().normalize())
-	print(error)
-	# if error < error_threshold:
-	move_to_win_scene()
+	if error < error_threshold:
+		move_to_win_scene()
 
 func _on_play_user_tone_button_pressed() -> void:
 	user_tone.toggle_note()
