@@ -38,7 +38,7 @@ func move_to_win_scene() -> void:
 func _on_check_difference_button_pressed() -> void:
 	var error = random_harmonics.error(audio_slider_grid.get_harmonics().normalize())
 	print(error)
-	#if error < error_threshold:
+	# if error < error_threshold:
 	move_to_win_scene()
 
 func _on_play_user_tone_button_pressed() -> void:

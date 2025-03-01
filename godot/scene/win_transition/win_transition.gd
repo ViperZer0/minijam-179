@@ -15,7 +15,9 @@ func _ready():
 	_random_start_position = random_tone_visualizer.position
 	_user_start_position = user_tone_visualizer.position
 	animation_player.play("flip_user_visualizer")
-	animation_player.queue("merge_visualizers")
+	# apparently merge_visualizers is just cursed so we're not gonna use it anymore!!!
+	#animation_player.queue("merge_visualizers")
+	animation_player.queue("merge_visualizers_2")
 
 func _process(_delta: float) -> void:
 	# Gets the midpoint between the two positions
@@ -23,8 +25,3 @@ func _process(_delta: float) -> void:
 	user_tone_visualizer.position = _user_start_position.lerp(center, merge_amount)
 	random_tone_visualizer.position = _random_start_position.lerp(center, merge_amount)
 
-func _on_animation_player_animation_finished(anim_name:StringName):
-	pass
-	# If we finish the first animation, switch to the second one
-	#if anim_name == "flip_user_visualizer":
-		#animation_player.play("merge_visualizers")

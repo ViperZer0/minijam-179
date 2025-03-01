@@ -72,6 +72,7 @@ func start_processing(harmonics: Harmonics):
 		_harmonics = harmonics
 
 	audio_player.play()
+	audio_player.volume_db = linear_to_db(0.0)
 	playback = audio_player.get_stream_playback()
 	_max_amplitude = _calc_max()
 	print(_max_amplitude)
