@@ -44,7 +44,6 @@ var _to_scene_scale: float = 1.0
 
 var _to_scene_opacity: float = 1.0
 
-
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 ## Loads the next scene and zooms into it from this scene
@@ -53,6 +52,13 @@ func zoom_in(from: Control, to: Control) -> void:
 	to_scene = to
 	get_tree().root.add_child(to)
 	animation_player.play("zoom_in")
+
+## Loads the next scene and zooms outwards to it. Basically the reverse of the above.
+func zoom_out(from: Control, to: Control) -> void:
+	from_scene = from
+	to_scene = to
+	get_tree().root.add_child(to)
+	animation_player.play("zoom_out")
 
 func _scale_scene(scene: Control, factor: float) -> void:
 	scene.pivot_offset = scene.size / 2
@@ -64,3 +70,4 @@ func _set_scene_opacity(scene: Control, opacity: float) -> void:
 func _on_animation_player_animation_finished(_anim_name: StringName):
 	# Unloading old scene
 	from_scene.queue_free()
+	from_scene = null
