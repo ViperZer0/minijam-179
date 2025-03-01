@@ -13,4 +13,3 @@ unique_name_in_owner = true
 [node name="SaveVisualizerService" parent="Services" instance=ExtResource("2_03yu5")]
 
 [node name="SceneTransitionService" parent="Services" instance=ExtResource("3_kb7ca")]
-from_scene_opacity = 0.0
