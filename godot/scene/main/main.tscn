@@ -78,9 +78,9 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 128
+theme_override_constants/margin_left = 256
 theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 128
+theme_override_constants/margin_right = 256
 theme_override_constants/margin_bottom = 16
 
 [node name="AudioSliderGrid" parent="HBoxContainer/VBoxContainer/MarginContainer3" instance=ExtResource("3_kn28c")]
