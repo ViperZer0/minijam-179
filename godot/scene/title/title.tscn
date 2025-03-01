@@ -14,7 +14,7 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 128
 theme_override_constants/margin_bottom = 16
 script = ExtResource("1_2ku48")
-main_scene_path = "res://scene/main/main.tscn"
+main_scene_path = "res://scene/difficulty_select/difficulty_select.tscn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
