@@ -32,8 +32,15 @@ func move_to_win_scene() -> void:
 	var save_visualizer_service: SaveVisualizerService = ServiceProvider.get_service("SaveVisualizerService")
 	save_visualizer_service.save_user_visualizer(user_tone_visualizer)
 	save_visualizer_service.save_random_visualizer(random_tone_visualizer)
-	# Now we can transition
-	get_tree().change_scene_to_packed(_win_transition_scene)
+	var scene: WinTransition  = _win_transition_scene.instantiate()
+	scene.main = self
+	# Instead of changing the scene we're gonna add it on top of this
+	get_tree().root.add_child(scene)
+	# We'll also hide our own visualizers.
+	# We don't want to use hide since that will move stuff around, they should still
+	# Take up space
+	random_tone_visualizer.modulate.a = 0
+	user_tone_visualizer.modulate.a = 0
 
 func _on_check_difference_button_pressed() -> void:
 	var error = random_harmonics.error(audio_slider_grid.get_harmonics().normalize())

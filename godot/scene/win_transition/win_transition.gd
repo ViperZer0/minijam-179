@@ -1,10 +1,19 @@
 extends Control
+class_name WinTransition
+
+@export var merge_amount: float = 0.0
+@export var main_transparency: float:
+	get:
+		return main.modulate.a
+	set(value):
+		main.modulate.a = value
+
+@export var main: Control
 
 @onready var random_tone_visualizer: AudioVisualizer = %RandomToneVisualizer
 @onready var user_tone_visualizer: AudioVisualizer = %UserToneVisualizer
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
-@export var merge_amount: float = 0.0
 var _user_start_position: Vector2
 var _random_start_position: Vector2
 
