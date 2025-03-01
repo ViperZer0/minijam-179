@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4crw1xwvc5ki"]
+
+[ext_resource type="AudioStream" uid="uid://b4w2n4hfhbs5n" path="res://component/sound_button/click.wav" id="1_t56do"]
+[ext_resource type="Script" path="res://component/sound_button/sound_button.gd" id="1_x7dpk"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hf050"]
+random_pitch = 1.02
+random_volume_offset_db = 4.0
+streams_count = 1
+stream_0/stream = ExtResource("1_t56do")
+
+[node name="SoundButton" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x7dpk")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_hf050")
+bus = &"SFX"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

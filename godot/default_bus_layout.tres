@@ -1,4 +1,19 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://c4jlyf8ptt0bp"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://c4jlyf8ptt0bp"]
+
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_mf3iu"]
+resource_name = "Delay"
+dry = 0.6
+tap1_active = false
+tap1_pan = 0.0
+tap2_active = false
+tap2_pan = 0.0
+feedback_active = true
+feedback_delay_ms = 200.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_me7nj"]
+resource_name = "Reverb"
+room_size = 0.5
+wet = 0.8
 
 [resource]
 bus/1/name = &"GameTones"
@@ -7,3 +22,13 @@ bus/1/mute = false
 bus/1/bypass_fx = false
 bus/1/volume_db = -2.11474
 bus/1/send = &"Master"
+bus/2/name = &"SFX"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectDelay_mf3iu")
+bus/2/effect/0/enabled = true
+bus/2/effect/1/effect = SubResource("AudioEffectReverb_me7nj")
+bus/2/effect/1/enabled = true

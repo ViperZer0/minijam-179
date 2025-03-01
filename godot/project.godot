@@ -18,10 +18,15 @@ config/icon="res://resource/image/icon.svg"
 [autoload]
 
 ServiceProvider="*res://services/service_provider.tscn"
+Background="*res://component/background/background.tscn"
 
 [dotnet]
 
 project/assembly_name="Synthesis"
+
+[gui]
+
+theme/custom="res://resource/theme.tres"
 
 [input]
 
