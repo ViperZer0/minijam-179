@@ -1,6 +1,10 @@
 extends PanelContainer
+## Number of harmonics to use
 @export var num_harmonics: int = 16
+## Threshold before a given answer is approved as a success
 @export var error_threshold: float = 0.05
+## Chance of including any given harmonic
+@export var harmonic_chance: float = 0.3
 
 @export_file("*.tscn") var win_transition_path: String = ""
 @onready var _win_transition_scene: PackedScene = load(win_transition_path)
@@ -14,7 +18,7 @@ var random_harmonics: Harmonics
 
 func _ready() -> void:
 	audio_slider_grid.num_harmonics = num_harmonics
-	random_harmonics = Harmonics.generate_random_harmonics(num_harmonics, 0.35).normalize()
+	random_harmonics = Harmonics.generate_random_harmonics(num_harmonics, harmonic_chance).normalize()
 	random_tone.start_processing(random_harmonics)
 	random_tone_visualizer.harmonics = random_harmonics
 	# We should call this deferred so it updates to the size of the container
