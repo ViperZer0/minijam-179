@@ -1,10 +1,11 @@
 extends MarginContainer
+class_name Main
 ## Number of harmonics to use
 @export var num_harmonics: int = 16
 ## Threshold before a given answer is approved as a success
 @export var error_threshold: float = 0.05
-## Chance of including any given harmonic
-@export var harmonic_chance: float = 0.3
+## How many harmonics the target tone should have.
+@export var num_target_harmonics: int = 2
 
 @export_file("*.tscn") var win_transition_path: String = ""
 @onready var _win_transition_scene: PackedScene = load(win_transition_path)

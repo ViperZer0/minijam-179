@@ -71,18 +71,22 @@ func normalize() -> Harmonics:
 
 	return self
 
-static func generate_random_harmonics(num_harmonics: int, include_harmonic_chance: float) -> Harmonics:
+static func generate_random_harmonics(num_harmonics: int, num_include_harmonics: float) -> Harmonics:
 	var new_harmonics = Harmonics.new()
-	var any_harmonics_generated: bool = false
-	## Keep trying until we generate at least *one* harmonic
-	while !any_harmonics_generated:
-		new_harmonics = Harmonics.new()
-		for i in range(0, num_harmonics):
-			if randf() < include_harmonic_chance:
-				var strength = randf()
-				new_harmonics.harmonics.push_back(Harmonic.new(i, strength))
-				any_harmonics_generated = true
-			else:
-				new_harmonics.harmonics.push_back(Harmonic.new(i, 0.0))
+
+	# generate all harmonics, then pick the ones to fill out
+	for i in range(0, num_harmonics):
+		new_harmonics.harmonics.push_back(Harmonic.new(i, 0.0))
+
+	# Add x number of harmonics
+	for i in range(0, num_include_harmonics):
+		# pick one at random
+		var candidate_harmonic: Harmonic = new_harmonics.harmonics[randi() % new_harmonics.size()]
+		# Keep searching until we find one that isn't already chosen
+		while candidate_harmonic.harmonic_strength > 0.0:
+			candidate_harmonic = new_harmonics.harmonics[randi() % new_harmonics.size()]
+
+		# Set the new harmonics strength
+		candidate_harmonic.harmonic_strength = randf()
 
 	return new_harmonics
