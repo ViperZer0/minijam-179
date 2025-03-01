@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgglvdk02ufxv"]
+[gd_scene load_steps=4 format=3 uid="uid://bgglvdk02ufxv"]
 
 [ext_resource type="Script" path="res://services/service_provider.gd" id="1_o85sh"]
 [ext_resource type="PackedScene" uid="uid://de7ojw5ixpoxw" path="res://services/save_visualizer_service/save_visualizer_service.tscn" id="2_03yu5"]
+[ext_resource type="PackedScene" uid="uid://o4ebxbmwrm13" path="res://services/scene_transition_service/scene_transition_service.tscn" id="3_kb7ca"]
 
 [node name="ServiceProvider" type="Node"]
 script = ExtResource("1_o85sh")
@@ -10,3 +11,6 @@ script = ExtResource("1_o85sh")
 unique_name_in_owner = true
 
 [node name="SaveVisualizerService" parent="Services" instance=ExtResource("2_03yu5")]
+
+[node name="SceneTransitionService" parent="Services" instance=ExtResource("3_kb7ca")]
+from_scene_opacity = 0.0

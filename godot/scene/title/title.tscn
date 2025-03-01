@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqy71jd7tmgyu"]
+[gd_scene load_steps=3 format=3 uid="uid://cqy71jd7tmgyu"]
 
+[ext_resource type="Script" path="res://scene/title/title.gd" id="1_2ku48"]
 [ext_resource type="PackedScene" uid="uid://c4crw1xwvc5ki" path="res://component/sound_button/sound_button.tscn" id="1_baogr"]
 
 [node name="Title" type="MarginContainer"]
@@ -12,6 +13,8 @@ theme_override_constants/margin_left = 128
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 128
 theme_override_constants/margin_bottom = 16
+script = ExtResource("1_2ku48")
+main_scene_path = "res://scene/main/main.tscn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -50,3 +53,5 @@ theme_override_constants/margin_bottom = 128
 [node name="SoundButton" parent="VBoxContainer/MarginContainer2" instance=ExtResource("1_baogr")]
 layout_mode = 2
 text = "Settings"
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/SoundButton" to="." method="_on_sound_button_pressed"]
