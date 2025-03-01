@@ -3,4 +3,10 @@
 - [ ] Quantize frequencies to notes and scales and stuff
 - [x] Error checking (i.e check if note is sufficiently close to target note)
 - [x] Sound waveform or spectral visualization
-- [ ] Improve UI, do lots of custom theming
+- [x] Improve UI, do lots of custom theming
+- [ ] Handle win screen
+	- [ ] Track score?
+	- [ ] Return to main?
+- [ ] Make tutorial
+- [ ] Add settings window
+- [ ] Flesh out background
