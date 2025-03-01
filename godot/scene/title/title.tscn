@@ -54,27 +54,13 @@ theme_override_constants/margin_bottom = 128
 layout_mode = 2
 text = "Settings"
 
-[node name="QuitOverlay" type="CanvasLayer" parent="."]
+[node name="QuitButton" parent="." instance=ExtResource("1_baogr")]
 unique_name_in_owner = true
-
-[node name="MarginContainer" type="MarginContainer" parent="QuitOverlay"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -32.0
-offset_right = 32.0
-grow_vertical = 0
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 32
-
-[node name="QuitButton" parent="QuitOverlay/MarginContainer" instance=ExtResource("1_baogr")]
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 0
+size_flags_vertical = 8
 text = "Quit
 "
 
 [connection signal="pressed" from="VBoxContainer/MarginContainer/SoundButton" to="." method="_on_sound_button_pressed"]
-[connection signal="pressed" from="QuitOverlay/MarginContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
