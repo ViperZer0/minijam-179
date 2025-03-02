@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://1m56yeqje48x"]
+
+[ext_resource type="AudioStream" uid="uid://b4w2n4hfhbs5n" path="res://component/sound_button/click.wav" id="1_188fb"]
+[ext_resource type="Script" path="res://component/h_audio_slider/h_audio_slider.gd" id="1_oq2jo"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_02j7b"]
+random_pitch = 1.02
+random_volume_offset_db = 4.0
+streams_count = 1
+stream_0/stream = ExtResource("1_188fb")
+
+[node name="HAudioSlider" type="HSlider"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oq2jo")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_02j7b")
+bus = &"SFX"
+
+[connection signal="drag_started" from="." to="." method="_on_drag_started"]
