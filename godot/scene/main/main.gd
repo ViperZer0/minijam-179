@@ -10,6 +10,17 @@ class_name Main
 @export_file("*.tscn") var win_transition_path: String = ""
 @onready var _win_transition_scene: PackedScene = load(win_transition_path)
 
+# Track the difficulty, for raisins
+@export var difficulty: Difficulty:
+	get:
+		return _difficulty
+	set(value):
+		_difficulty = value
+		num_target_harmonics = value.pick_num_harmonics()
+		error_threshold = value.error_margin
+
+var _difficulty: Difficulty
+
 @onready var random_tone: AudioSignalGenerator = %RandomTone
 @onready var random_tone_visualizer: AudioVisualizer = %RandomToneVisualizer
 var random_harmonics: Harmonics

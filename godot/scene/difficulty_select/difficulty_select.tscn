@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6agv77fdwyp0"]
+[gd_scene load_steps=6 format=3 uid="uid://c6agv77fdwyp0"]
 
 [ext_resource type="Script" path="res://scene/difficulty_select/difficulty_select.gd" id="1_10o32"]
 [ext_resource type="PackedScene" uid="uid://c4crw1xwvc5ki" path="res://component/sound_button/sound_button.tscn" id="1_q6hjr"]
+[ext_resource type="Resource" uid="uid://fl3xdswcoino" path="res://resource/difficulties/easy_difficulty.tres" id="2_chcyr"]
+[ext_resource type="Resource" uid="uid://cey41o5qkl8uw" path="res://resource/difficulties/medium_difficulty.tres" id="3_x60vn"]
+[ext_resource type="Resource" uid="uid://rlsk11tt3kyr" path="res://resource/difficulties/hard_difficulty.tres" id="4_oixk8"]
 
 [node name="DifficultySelect" type="MarginContainer"]
 anchors_preset = 15
@@ -17,6 +20,9 @@ script = ExtResource("1_10o32")
 main_scene_path = "res://scene/main/main.tscn"
 back_scene_path = "res://scene/title/title.tscn"
 tutorial_scene_path = "res://scene/tutorial/tutorial.tscn"
+easy_difficulty = ExtResource("2_chcyr")
+medium_difficulty = ExtResource("3_x60vn")
+hard_difficulty = ExtResource("4_oixk8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -32,7 +38,7 @@ layout_mode = 2
 text = "Tutorial
 "
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="TutorialLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Learn how to play"
 horizontal_alignment = 1
@@ -47,9 +53,10 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 text = "Easy"
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="EasyButtonLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "2-3 harmonics, lenient margin for error"
+text = "harmonics, lenient margin for error"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -62,9 +69,10 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 text = "Medium"
 
-[node name="Label3" type="Label" parent="VBoxContainer"]
+[node name="MediumButtonLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "3-4 harmonics, less margin for error"
+text = "harmonics, less margin for error"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -77,9 +85,10 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 text = "Hard"
 
-[node name="Label4" type="Label" parent="VBoxContainer"]
+[node name="HardButtonLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "3-5 harmonics, least margin for error"
+text = "harmonics, least margin for error"
 horizontal_alignment = 1
 vertical_alignment = 1
 

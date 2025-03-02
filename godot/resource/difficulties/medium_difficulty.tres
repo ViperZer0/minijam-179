@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Difficulty" load_steps=2 format=3 uid="uid://cey41o5qkl8uw"]
+
+[ext_resource type="Script" path="res://src/difficulty.gd" id="1_5v5jb"]
+
+[resource]
+script = ExtResource("1_5v5jb")
+min_num_harmonics = 3
+max_num_harmonics = 4
+error_margin = 0.03

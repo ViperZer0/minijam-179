@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Difficulty" load_steps=2 format=3 uid="uid://fl3xdswcoino"]
+
+[ext_resource type="Script" path="res://src/difficulty.gd" id="1_duxr6"]
+
+[resource]
+script = ExtResource("1_duxr6")
+min_num_harmonics = 2
+max_num_harmonics = 3
+error_margin = 0.05
