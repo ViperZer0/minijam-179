@@ -57,7 +57,7 @@ func _ready():
 	var global_settings: AudioSignalGeneratorGlobalSettingsService = ServiceProvider.get_service("AudioSignalGeneratorGlobalSettingsService")
 	sample_rate = global_settings.sample_rate
 	audio_player.stream.mix_rate = sample_rate
-	audio_player.stream.buffer_length = global_settings.buffer_length
+	audio_player.stream.buffer_length = global_settings.buffer_size
 	global_settings.sample_rate_changed.connect(_on_sample_rate_changed)
 	global_settings.buffer_size_changed.connect(_on_buffer_length_changed)
 
@@ -131,7 +131,7 @@ func _get_amplitude_at(t: float) -> float:
 
 func _on_sample_rate_changed(sample_rate: int) -> void:
 	self.sample_rate = sample_rate
-	audio_player.stream.sample_rate = sample_rate
+	audio_player.stream.mix_rate = sample_rate
 
 func _on_buffer_length_changed(buffer_length: float) -> void:
 	audio_player.stream.buffer_length = buffer_length

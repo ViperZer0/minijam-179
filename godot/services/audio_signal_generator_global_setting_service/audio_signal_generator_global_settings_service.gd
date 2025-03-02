@@ -10,8 +10,9 @@ signal buffer_size_changed(buffer_size: float)
 	get:
 		return _sample_rate
 	set(value):
-		_sample_rate = value
-		sample_rate_changed.emit(value)
+		if _sample_rate != value:
+			_sample_rate = value
+			sample_rate_changed.emit(value)
 
 var _sample_rate: int = 22050
 
@@ -21,7 +22,8 @@ var _sample_rate: int = 22050
 	get:
 		return _buffer_size
 	set(value):
-		_buffer_size = value
-		buffer_size_changed.emit(value)
+		if _buffer_size != value:
+			_buffer_size = value
+			buffer_size_changed.emit(value)
 
 var _buffer_size: float = 0.1
