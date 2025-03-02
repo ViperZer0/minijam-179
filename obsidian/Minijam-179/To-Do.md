@@ -15,4 +15,4 @@
 - [ ] Flesh out background
 - [x] Add resource for difficulty modifiers
 - [ ] Add swoosh to SceneTransitionService
-- [ ] Add some ambient background music
+- [x] Add some ambient background music

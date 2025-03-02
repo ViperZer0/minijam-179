@@ -25,7 +25,7 @@ theme_type_variation = &"LargeLabel"
 text = "About"
 horizontal_alignment = 1
 
-[node name="Label" type="RichTextLabel" parent="VBoxContainer"]
+[node name="RichText" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
@@ -40,6 +40,13 @@ Font is [url=https://fonts.google.com/specimen/Quicksand]Quicksand[/url] by Andr
 
 Click sound effect was used with license by chestnutjam on [url=https://pixabay.com/sound-effects/mouse-clicks-6015/]Pixabay[/url].
 
+Background music:
+\"Ambiment\" Kevin MacLeod ([url=\"Ambiment\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/]incompetech.com[/url])
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
 [center]Thank you for playing![/center]"
 fit_content = true
 
@@ -50,5 +57,5 @@ layout_mode = 2
 layout_mode = 2
 text = "Back"
 
-[connection signal="meta_clicked" from="VBoxContainer/Label" to="." method="_on_label_meta_clicked"]
+[connection signal="meta_clicked" from="VBoxContainer/RichText" to="." method="_on_label_meta_clicked"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

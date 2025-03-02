@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgglvdk02ufxv"]
+[gd_scene load_steps=6 format=3 uid="uid://bgglvdk02ufxv"]
 
 [ext_resource type="Script" path="res://services/service_provider.gd" id="1_o85sh"]
 [ext_resource type="PackedScene" uid="uid://de7ojw5ixpoxw" path="res://services/save_visualizer_service/save_visualizer_service.tscn" id="2_03yu5"]
 [ext_resource type="PackedScene" uid="uid://o4ebxbmwrm13" path="res://services/scene_transition_service/scene_transition_service.tscn" id="3_kb7ca"]
 [ext_resource type="PackedScene" uid="uid://22msa6wnwtal" path="res://services/audio_signal_generator_global_setting_service/audio_signal_generator_global_settings_service.tscn" id="4_2u3ui"]
+[ext_resource type="PackedScene" uid="uid://b7lacnabm2wdg" path="res://services/bgm_music_service/bgm_music_service.tscn" id="5_xopgg"]
 
 [node name="ServiceProvider" type="Node"]
 script = ExtResource("1_o85sh")
@@ -16,3 +17,5 @@ unique_name_in_owner = true
 [node name="SceneTransitionService" parent="Services" instance=ExtResource("3_kb7ca")]
 
 [node name="AudioSignalGeneratorGlobalSettingsService" parent="Services" instance=ExtResource("4_2u3ui")]
+
+[node name="BgmMusicService" parent="Services" instance=ExtResource("5_xopgg")]
