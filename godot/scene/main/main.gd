@@ -36,6 +36,9 @@ var random_harmonics: Harmonics
 @onready var scene_transition_service: SceneTransitionService = ServiceProvider.get_service("SceneTransitionService")
 
 func _ready() -> void:
+	# Don't tell anyone, this doesn't actually do anything,
+	# But i think I'm okay leaving it like this. Visually I think 16 sliders looks better,
+	# Even though we only use 8 (which i think is for the best)
 	audio_slider_grid.num_harmonics = num_harmonics
 	random_harmonics = Harmonics.generate_random_harmonics(num_harmonics, num_target_harmonics).normalize()
 	random_tone.start_processing(random_harmonics)
