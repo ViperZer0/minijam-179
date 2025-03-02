@@ -47,12 +47,14 @@ var _unload_last_scene: bool = true
 var _last_scene_transition_type: String = ""
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 
 ## Loads the next scene and zooms into it from this scene
 func zoom_in(from: Control, to: Control, unload_from_scene := true) -> void:
 	from_scene = from
 	to_scene = to
 	get_tree().root.add_child(to)
+	audio_player.play()
 	animation_player.play("zoom_in")
 	_last_scene_transition_type = "zoom_in"
 	_unload_last_scene = unload_from_scene
@@ -62,6 +64,7 @@ func zoom_out(from: Control, to: Control, unload_from_scene := true) -> void:
 	from_scene = from
 	to_scene = to
 	get_tree().root.add_child(to)
+	audio_player.play()
 	animation_player.play("zoom_out")
 	_last_scene_transition_type = "zoom_out"
 	_unload_last_scene = unload_from_scene

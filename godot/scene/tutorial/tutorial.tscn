@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cp1b50qlsicsu" path="res://component/audio_visualizer/audio_visualizer.tscn" id="3_k4r6u"]
 [ext_resource type="Script" path="res://src/harmonic.gd" id="4_pwbtj"]
 [ext_resource type="Script" path="res://src/harmonics.gd" id="5_y271k"]
-[ext_resource type="AudioStream" uid="uid://b4w2n4hfhbs5n" path="res://component/sound_button/click.wav" id="7_ni4yp"]
+[ext_resource type="AudioStream" uid="uid://b4w2n4hfhbs5n" path="res://resource/sounds/click.wav" id="7_ni4yp"]
 [ext_resource type="PackedScene" uid="uid://dch1jvncgnbkl" path="res://component/audio_generator/audio_signal_generator.tscn" id="8_80k4k"]
 [ext_resource type="PackedScene" uid="uid://crxqel5e6wmer" path="res://component/audio_slider_grid/audio_slider_grid.tscn" id="9_hww1u"]
 [ext_resource type="PackedScene" uid="uid://c4crw1xwvc5ki" path="res://component/sound_button/sound_button.tscn" id="10_sy64l"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c4crw1xwvc5ki"]
 
-[ext_resource type="AudioStream" uid="uid://b4w2n4hfhbs5n" path="res://component/sound_button/click.wav" id="1_t56do"]
+[ext_resource type="AudioStream" uid="uid://b4w2n4hfhbs5n" path="res://resource/sounds/click.wav" id="1_t56do"]
 [ext_resource type="Script" path="res://component/sound_button/sound_button.gd" id="1_x7dpk"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hf050"]
