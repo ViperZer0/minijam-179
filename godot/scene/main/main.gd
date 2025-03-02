@@ -65,10 +65,14 @@ func move_to_win_scene() -> void:
 	random_tone.stop_note()
 	user_tone.stop_note()
 	# Set adsr??? Super hacky????
+	# Halve the volume of both tones so they don't clip
+	# Maybe we should be doing that anyways???
+	random_tone.amplitude_scaling = 0.5
 	random_tone.attack = 0.0
 	random_tone.decay = 4.0
 	random_tone.sustain = 0.0
 	random_tone.release = 0.0
+	user_tone.amplitude_scaling = 0.5
 	user_tone.attack = 0.0
 	user_tone.decay = 4.0
 	user_tone.sustain = 0.0

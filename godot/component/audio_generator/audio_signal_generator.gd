@@ -15,9 +15,10 @@ class_name AudioSignalGenerator
 			# recalculate max amplitude
 			_max_amplitude = _calc_max()
 
-@export_range(-1, 1, 0.1) var amplitude_scaling: float = 1.0
-@export_group("ADSR Envelope")
 var _harmonics: Harmonics
+
+@export_range(0, 1, 0.1) var amplitude_scaling: float = 1.0
+@export_group("ADSR Envelope")
 
 ## Time in seconds to reach max volume on gate on
 @export var attack: float = 0.0
