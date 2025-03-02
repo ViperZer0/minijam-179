@@ -29,9 +29,9 @@ theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 script = ExtResource("1_4r6h2")
 num_harmonics = 8
-error_threshold = null
-num_target_harmonics = null
 win_transition_path = "res://scene/win_transition/win_transition.tscn"
+difficulty_scene_path = "res://scene/difficulty_select/difficulty_select.tscn"
+settings_scene_path = "res://scene/settings/settings.tscn"
 
 [node name="RandomTone" parent="." instance=ExtResource("1_4gvmu")]
 unique_name_in_owner = true
@@ -76,16 +76,29 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BackButton" parent="HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("7_j2sro")]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Back"
+
+[node name="SettingsButton" parent="HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("7_j2sro")]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Settings"
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 theme_override_constants/margin_left = 256
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 256
 theme_override_constants/margin_bottom = 16
 
-[node name="AudioSliderGrid" parent="HBoxContainer/VBoxContainer/MarginContainer3" instance=ExtResource("3_kn28c")]
+[node name="AudioSliderGrid" parent="HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer3" instance=ExtResource("3_kn28c")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -112,6 +125,8 @@ size_flags_vertical = 3
 text = "Check Answer
 "
 
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/PlayRandomToneButton" to="." method="_on_play_random_tone_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/PlayUserToneButton" to="." method="_on_play_user_tone_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/CheckDifferenceButton" to="." method="_on_check_difference_button_pressed"]

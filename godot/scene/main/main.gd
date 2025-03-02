@@ -10,6 +10,12 @@ class_name Main
 @export_file("*.tscn") var win_transition_path: String = ""
 @onready var _win_transition_scene: PackedScene = load(win_transition_path)
 
+@export_file("*.tscn") var difficulty_scene_path: String = ""
+@onready var difficulty_scene: PackedScene = load(difficulty_scene_path)
+
+@export_file("*.tscn") var settings_scene_path: String = ""
+@onready var settings_scene: PackedScene = load(settings_scene_path)
+
 # Track the difficulty, for raisins
 @export var difficulty: Difficulty:
 	get:
@@ -27,6 +33,7 @@ var random_harmonics: Harmonics
 @onready var user_tone: AudioSignalGenerator = %UserTone
 @onready var user_tone_visualizer: AudioVisualizer = %UserToneVisualizer
 @onready var audio_slider_grid: AudioSliderGrid = %AudioSliderGrid
+@onready var scene_transition_service: SceneTransitionService = ServiceProvider.get_service("SceneTransitionService")
 
 func _ready() -> void:
 	audio_slider_grid.num_harmonics = num_harmonics
@@ -94,3 +101,11 @@ func _on_play_user_tone_button_pressed() -> void:
 
 func _on_play_random_tone_button_pressed() -> void:
 	random_tone.toggle_note()
+
+func _on_back_button_pressed():
+	var difficulty_scene_instance = difficulty_scene.instantiate()
+	scene_transition_service.zoom_out(self, difficulty_scene_instance)
+
+func _on_settings_button_pressed():
+	var settings_scene_instance = settings_scene.instantiate()
+	scene_transition_service.zoom_out(self, settings_scene_instance, false)
