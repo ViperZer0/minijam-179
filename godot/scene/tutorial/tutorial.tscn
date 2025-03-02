@@ -331,8 +331,9 @@ offset_bottom = 140.0
 mouse_filter = 2
 
 [node name="Label" parent="Dialogue/1" index="1"]
+offset_top = -50.0
 offset_right = 304.0
-offset_bottom = 155.0
+offset_bottom = 105.0
 theme_type_variation = &"TitleLabel"
 text = "Hello!"
 
@@ -344,8 +345,9 @@ offset_bottom = 276.0
 mouse_filter = 2
 
 [node name="Label" parent="Dialogue/2" index="1"]
+offset_top = -50.0
 offset_right = 325.0
-offset_bottom = 40.0
+offset_bottom = -10.0
 theme_type_variation = &"LargeLabel"
 text = "Welcome to Synthesis."
 
@@ -385,10 +387,9 @@ offset_bottom = 172.0
 mouse_filter = 2
 
 [node name="Label" parent="Dialogue/5" index="1"]
-offset_left = -168.0
-offset_top = 16.0
-offset_right = 655.0
-offset_bottom = 56.0
+offset_top = -50.0
+offset_right = 823.0
+offset_bottom = -10.0
 theme_type_variation = &"LargeLabel"
 text = "A completely pure, unmodified, single frequency."
 
@@ -555,22 +556,30 @@ visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 offset_left = 320.0
-offset_top = 496.0
+offset_top = 396.0
 offset_right = -352.0
-offset_bottom = 36.0
+offset_bottom = -64.0
 
-[node name="BackButton" parent="." instance=ExtResource("10_sy64l")]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_right = 0.0
-offset_top = -32.0
-offset_right = 32.0
-grow_horizontal = 1
-grow_vertical = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="BackButton" parent="MarginContainer" instance=ExtResource("10_sy64l")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
 text = "Back to Level Selection"
 
-[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MarginContainer/BackButton" to="." method="_on_back_button_pressed"]
 
 [editable path="Dialogue/1"]
 [editable path="Dialogue/2"]

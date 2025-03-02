@@ -20,12 +20,15 @@ var dialogue_labels: Array[FadeLabel]
 		return harmonics.harmonics[1].harmonic_strength
 	set(value):
 		harmonics.harmonics[1].harmonic_strength = value
+		# We need this to refresh the max amplitude so it doesn't clip
+		audio_signal.harmonics = harmonics
 
 @export var add_third_harmonic: float:
 	get:
 		return harmonics.harmonics[2].harmonic_strength
 	set(value):
 		harmonics.harmonics[2].harmonic_strength = value
+		audio_signal.harmonics = harmonics
 
 func _ready():
 	var dialogue_group: Node = %Dialogue
