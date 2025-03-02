@@ -4,13 +4,13 @@
 - [x] Error checking (i.e check if note is sufficiently close to target note)
 - [x] Sound waveform or spectral visualization
 - [x] Improve UI, do lots of custom theming
-- [ ] Handle win screen
+- [x] Handle win screen
 	- [ ] Track score?
-	- [ ] Return to main?
+	- [x] Return to main?
 - [x] Make tutorial
 - [x] Add settings window
 	- [x] SFX and music sliders
 	- [x] Sample rate, buffer length
-- [ ] About page
+- [x] About page
 - [ ] Flesh out background
 - [x] Add resource for difficulty modifiers

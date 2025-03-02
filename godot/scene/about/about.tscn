@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://ro82gq2rjjnc"]
+
+[ext_resource type="Script" path="res://scene/about/about.gd" id="1_4vxm0"]
+[ext_resource type="PackedScene" uid="uid://c4crw1xwvc5ki" path="res://component/sound_button/sound_button.tscn" id="2_3qgev"]
+
+[node name="About" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+script = ExtResource("1_4vxm0")
+back_scene_path = "res://scene/title/title.tscn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LargeLabel"
+text = "About"
+horizontal_alignment = 1
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "This game was created for the [url=https://itch.io/jam/mini-jam-179-energy]Mini Jam[/url] game jam.
+ 
+[center]Developer[/center]
+[center]Elijah Stoll[/center]
+
+All resources and assets were created by me for this game with the exception of the following:
+
+Font is [url=https://fonts.google.com/specimen/Quicksand]Quicksand[/url] by Andrew Paglinawan
+
+Click sound effect was used with license by chestnutjam on [url=https://pixabay.com/sound-effects/mouse-clicks-6015/]Pixabay[/url].
+
+[center]Thank you for playing![/center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_3qgev")]
+layout_mode = 2
+text = "Back"
+
+[connection signal="meta_clicked" from="VBoxContainer/Label" to="." method="_on_label_meta_clicked"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

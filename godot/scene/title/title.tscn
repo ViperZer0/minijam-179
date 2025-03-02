@@ -9,13 +9,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 128
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 128
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 script = ExtResource("1_2ku48")
 main_scene_path = "res://scene/difficulty_select/difficulty_select.tscn"
 settings_scene_path = "res://scene/settings/settings.tscn"
+about_scene_path = "res://scene/about/about.tscn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -23,37 +24,51 @@ alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer3"]
 layout_mode = 2
-size_flags_vertical = 1
 theme_type_variation = &"TitleLabel"
 text = "Synthesis"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 256
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 256
 theme_override_constants/margin_bottom = 16
 
-[node name="StartButton" parent="VBoxContainer/MarginContainer" instance=ExtResource("1_baogr")]
+[node name="StartButton" parent="VBoxContainer/VBoxContainer/MarginContainer" instance=ExtResource("1_baogr")]
 layout_mode = 2
 text = "Start"
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 256
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 256
-theme_override_constants/margin_bottom = 128
+theme_override_constants/margin_bottom = 16
 
-[node name="SettingsButton" parent="VBoxContainer/MarginContainer2" instance=ExtResource("1_baogr")]
+[node name="SettingsButton" parent="VBoxContainer/VBoxContainer/MarginContainer2" instance=ExtResource("1_baogr")]
 layout_mode = 2
 text = "Settings"
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 256
+theme_override_constants/margin_bottom = 16
+
+[node name="AboutButton" parent="VBoxContainer/VBoxContainer/MarginContainer4" instance=ExtResource("1_baogr")]
+layout_mode = 2
+text = "About"
 
 [node name="QuitButton" parent="." instance=ExtResource("1_baogr")]
 unique_name_in_owner = true
@@ -63,6 +78,7 @@ size_flags_vertical = 8
 text = "Quit
 "
 
-[connection signal="pressed" from="VBoxContainer/MarginContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/MarginContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/MarginContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/MarginContainer4/AboutButton" to="." method="_on_about_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
