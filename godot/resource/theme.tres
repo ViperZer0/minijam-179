@@ -34,5 +34,7 @@ Button/fonts/font = ExtResource("1_4q7s8")
 Button/styles/hover = SubResource("StyleBoxFlat_g0211")
 Button/styles/normal = SubResource("StyleBoxFlat_vwg2w")
 Label/fonts/font = ExtResource("1_vtbg8")
+LargeLabel/base_type = &"Label"
+LargeLabel/font_sizes/font_size = 32
 TitleLabel/base_type = &"Label"
 TitleLabel/font_sizes/font_size = 124

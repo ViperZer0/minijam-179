@@ -39,7 +39,6 @@ var _to_scene_scale: float = 1.0
 	set(value):
 		_to_scene_opacity = value
 		if to_scene != null:
-			print(to_scene.modulate.a)
 			_set_scene_opacity(to_scene, value)
 
 var _to_scene_opacity: float = 1.0

@@ -1,0 +1,588 @@
+[gd_scene load_steps=26 format=3 uid="uid://cn8ybbopd0me3"]
+
+[ext_resource type="Script" path="res://scene/tutorial/tutorial.gd" id="1_wpmdg"]
+[ext_resource type="PackedScene" uid="uid://ywsx277clb7v" path="res://component/fade_label/fade_label.tscn" id="2_0en0w"]
+[ext_resource type="Script" path="res://src/trigger_event.gd" id="2_4kavd"]
+[ext_resource type="PackedScene" uid="uid://cp1b50qlsicsu" path="res://component/audio_visualizer/audio_visualizer.tscn" id="3_k4r6u"]
+[ext_resource type="Script" path="res://src/harmonic.gd" id="4_pwbtj"]
+[ext_resource type="Script" path="res://src/harmonics.gd" id="5_y271k"]
+[ext_resource type="AudioStream" uid="uid://b4w2n4hfhbs5n" path="res://component/sound_button/click.wav" id="7_ni4yp"]
+[ext_resource type="PackedScene" uid="uid://dch1jvncgnbkl" path="res://component/audio_generator/audio_signal_generator.tscn" id="8_80k4k"]
+[ext_resource type="PackedScene" uid="uid://crxqel5e6wmer" path="res://component/audio_slider_grid/audio_slider_grid.tscn" id="9_hww1u"]
+[ext_resource type="PackedScene" uid="uid://c4crw1xwvc5ki" path="res://component/sound_button/sound_button.tscn" id="10_sy64l"]
+
+[sub_resource type="Resource" id="Resource_w41m6"]
+script = ExtResource("2_4kavd")
+dialogue_trigger = 2
+animation_name = "show_visualizer"
+
+[sub_resource type="Resource" id="Resource_7wwqi"]
+script = ExtResource("2_4kavd")
+dialogue_trigger = 8
+animation_name = "add_second_harmonic"
+
+[sub_resource type="Resource" id="Resource_djwbd"]
+script = ExtResource("2_4kavd")
+dialogue_trigger = 10
+animation_name = "add_third_harmonic"
+
+[sub_resource type="Resource" id="Resource_hm3v3"]
+script = ExtResource("2_4kavd")
+dialogue_trigger = 13
+animation_name = "show_slider_grid"
+
+[sub_resource type="Resource" id="Resource_ylhvu"]
+script = ExtResource("4_pwbtj")
+harmonic_number = 0
+harmonic_strength = 1.0
+
+[sub_resource type="Resource" id="Resource_tcdik"]
+script = ExtResource("4_pwbtj")
+harmonic_number = 1
+harmonic_strength = 0.0
+
+[sub_resource type="Resource" id="Resource_ety7g"]
+script = ExtResource("4_pwbtj")
+harmonic_number = 2
+harmonic_strength = 0.0
+
+[sub_resource type="Resource" id="Resource_cbwgh"]
+script = ExtResource("5_y271k")
+harmonics = Array[ExtResource("4_pwbtj")]([SubResource("Resource_ylhvu"), SubResource("Resource_tcdik"), SubResource("Resource_ety7g")])
+
+[sub_resource type="Animation" id="Animation_qrjdv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioVisualizer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 274)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioVisualizer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioSignalGenerator")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stop_note"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:add_second_harmonic")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:add_third_harmonic")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioSliderGrid:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioSliderGrid:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(320, 396)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioSliderGrid:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_b4yuo"]
+resource_name = "show_visualizer"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioVisualizer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 274), Vector2(0, 324)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioVisualizer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioSignalGenerator")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_note"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_gdhcy"]
+resource_name = "add_second_harmonic"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:add_second_harmonic")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_186a2"]
+resource_name = "add_third_harmonic"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:add_third_harmonic")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_okt0q"]
+resource_name = "show_slider_grid"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioSliderGrid:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioSliderGrid:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 396), Vector2(320, 296)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioSliderGrid:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"set_grid_harmonics"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_drq1g"]
+_data = {
+"RESET": SubResource("Animation_qrjdv"),
+"add_second_harmonic": SubResource("Animation_gdhcy"),
+"add_third_harmonic": SubResource("Animation_186a2"),
+"show_slider_grid": SubResource("Animation_okt0q"),
+"show_visualizer": SubResource("Animation_b4yuo")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dho6t"]
+random_pitch = 1.1
+random_volume_offset_db = 4.0
+streams_count = 1
+stream_0/stream = ExtResource("7_ni4yp")
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wpmdg")
+animation_triggers = Array[ExtResource("2_4kavd")]([SubResource("Resource_w41m6"), SubResource("Resource_7wwqi"), SubResource("Resource_djwbd"), SubResource("Resource_hm3v3")])
+harmonics = SubResource("Resource_cbwgh")
+back_scene_path = "res://scene/difficulty_select/difficulty_select.tscn"
+
+[node name="Dialogue" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="1" parent="Dialogue" instance=ExtResource("2_0en0w")]
+offset_left = 368.0
+offset_top = 120.0
+offset_right = 417.0
+offset_bottom = 140.0
+mouse_filter = 2
+
+[node name="Label" parent="Dialogue/1" index="1"]
+offset_right = 304.0
+offset_bottom = 155.0
+theme_type_variation = &"TitleLabel"
+text = "Hello!"
+
+[node name="2" parent="Dialogue" instance=ExtResource("2_0en0w")]
+offset_left = 720.0
+offset_top = 256.0
+offset_right = 883.0
+offset_bottom = 276.0
+mouse_filter = 2
+
+[node name="Label" parent="Dialogue/2" index="1"]
+offset_right = 325.0
+offset_bottom = 40.0
+theme_type_variation = &"LargeLabel"
+text = "Welcome to Synthesis."
+
+[node name="3" parent="Dialogue" instance=ExtResource("2_0en0w")]
+offset_left = 120.0
+offset_top = 216.0
+offset_right = 283.0
+offset_bottom = 236.0
+mouse_filter = 2
+
+[node name="Label" parent="Dialogue/3" index="1"]
+offset_top = -50.0
+offset_right = 325.0
+offset_bottom = -10.0
+theme_type_variation = &"LargeLabel"
+text = "This is a sine wave."
+
+[node name="4" parent="Dialogue" instance=ExtResource("2_0en0w")]
+offset_left = 304.0
+offset_top = 112.0
+offset_right = 467.0
+offset_bottom = 132.0
+mouse_filter = 2
+
+[node name="Label" parent="Dialogue/4" index="1"]
+offset_top = -50.0
+offset_right = 823.0
+offset_bottom = -10.0
+theme_type_variation = &"LargeLabel"
+text = "Currently, this sine wave has a base frequency of 440 Hz."
+
+[node name="5" parent="Dialogue" instance=ExtResource("2_0en0w")]
+offset_left = 504.0
+offset_top = 152.0
+offset_right = 667.0
+offset_bottom = 172.0
+mouse_filter = 2
+
+[node name="Label" parent="Dialogue/5" index="1"]
+offset_left = -168.0
+offset_top = 16.0
+offset_right = 655.0
+offset_bottom = 56.0
+theme_type_variation = &"LargeLabel"
+text = "A completely pure, unmodified, single frequency."
+
+[node name="6" parent="Dialogue" instance=ExtResource("2_0en0w")]
+offset_left = 760.0
+offset_top = 112.0
+offset_right = 923.0
+offset_bottom = 132.0
+mouse_filter = 2
+
+[node name="Label" parent="Dialogue/6" index="1"]
+offset_top = -50.0
+offset_right = 823.0
+offset_bottom = -10.0
+theme_type_variation = &"LargeLabel"
+text = "We can add other frequencies to this one."
+
+[node name="7" parent="Dialogue" instance=ExtResource("2_0en0w")]
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 195.0
+offset_bottom = 84.0
+mouse_filter = 2
+
+[node name="Label" parent="Dialogue/7" index="1"]
+offset_top = -50.0
+offset_right = 823.0
+offset_bottom = 33.0
+theme_type_variation = &"LargeLabel"
+text = "In this game we'll focus on specific frequencies
+that are multiples of this base frequency."
+
+[node name="8" parent="Dialogue" instance=ExtResource("2_0en0w")]
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 195.0
+offset_bottom = 84.0
+mouse_filter = 2
+
+[node name="Label" parent="Dialogue/8" index="1"]
+offset_top = -50.0
+offset_right = 823.0
+offset_bottom = 33.0
+theme_type_variation = &"LargeLabel"
+text = "These are called harmonics or overtones."
+
+[node name="9" parent="Dialogue" instance=ExtResource("2_0en0w")]
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 195.0
+offset_bottom = 84.0
+mouse_filter = 2
+
+[node name="Label" parent="Dialogue/9" index="1"]
+offset_top = -50.0
+offset_right = 823.0
+offset_bottom = 33.0
+theme_type_variation = &"LargeLabel"
+text = "For example, if we add the second harmonic..."
+
+[node name="10" parent="Dialogue" instance=ExtResource("2_0en0w")]
+offset_left = 104.0
+offset_top = 128.0
+offset_right = 267.0
+offset_bottom = 148.0
+mouse_filter = 2
+
+[node name="Label" parent="Dialogue/10" index="1"]
+offset_top = -50.0
+offset_right = 904.0
+offset_bottom = 33.0
+theme_type_variation = &"LargeLabel"
+text = "This harmonic has double the frequency, 880 Hz, 
+and represents a note an octave higher than our starting note."
+
+[node name="11" parent="Dialogue" instance=ExtResource("2_0en0w")]
+offset_left = 88.0
+offset_top = 64.0
+offset_right = 251.0
+offset_bottom = 84.0
+mouse_filter = 2
+
+[node name="Label" parent="Dialogue/11" index="1"]
+offset_top = -50.0
+offset_right = 988.0
+offset_bottom = 33.0
+theme_type_variation = &"LargeLabel"
+text = "The third harmonic has three times the starting frequency
+and represents a note an octave and a fifth above our starting note."
+
+[node name="12" parent="Dialogue" instance=ExtResource("2_0en0w")]
+offset_left = 200.0
+offset_top = 96.0
+offset_right = 363.0
+offset_bottom = 116.0
+mouse_filter = 2
+
+[node name="Label" parent="Dialogue/12" index="1"]
+offset_top = -50.0
+offset_right = 988.0
+offset_bottom = 33.0
+theme_type_variation = &"LargeLabel"
+text = "As you can see, more harmonics make the note richer, more dense,
+and visually complicates the waveform."
+
+[node name="13" parent="Dialogue" instance=ExtResource("2_0en0w")]
+offset_left = 168.0
+offset_top = 112.0
+offset_right = 331.0
+offset_bottom = 132.0
+mouse_filter = 2
+
+[node name="Label" parent="Dialogue/13" index="1"]
+offset_top = -50.0
+offset_right = 988.0
+offset_bottom = 76.0
+theme_type_variation = &"LargeLabel"
+text = "Your goal will be to match a target note and its harmonics.
+Doing so will allow the two notes to destructively interfere,
+cancelling each other out."
+
+[node name="14" parent="Dialogue" instance=ExtResource("2_0en0w")]
+offset_left = 88.0
+offset_top = 152.0
+offset_right = 251.0
+offset_bottom = 172.0
+mouse_filter = 2
+
+[node name="Label" parent="Dialogue/14" index="1"]
+offset_top = -50.0
+offset_right = 988.0
+offset_bottom = 76.0
+theme_type_variation = &"LargeLabel"
+text = "Give playing with this one a try, and when you're ready,
+press the button to move onto the game!"
+
+[node name="AudioVisualizer" parent="." instance=ExtResource("3_k4r6u")]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -50.0
+offset_bottom = 50.0
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_drq1g")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_dho6t")
+bus = &"SFX"
+
+[node name="AudioSignalGenerator" parent="." instance=ExtResource("8_80k4k")]
+attack = 1.0
+decay = 0.4
+sustain = 0.15
+
+[node name="AudioSliderGrid" parent="." instance=ExtResource("9_hww1u")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_left = 320.0
+offset_top = 496.0
+offset_right = -352.0
+offset_bottom = 36.0
+
+[node name="BackButton" parent="." instance=ExtResource("10_sy64l")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_top = -32.0
+offset_right = 32.0
+grow_horizontal = 1
+grow_vertical = 0
+text = "Back to Level Selection"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+
+[editable path="Dialogue/1"]
+[editable path="Dialogue/2"]
+[editable path="Dialogue/3"]
+[editable path="Dialogue/4"]
+[editable path="Dialogue/5"]
+[editable path="Dialogue/6"]
+[editable path="Dialogue/7"]
+[editable path="Dialogue/8"]
+[editable path="Dialogue/9"]
+[editable path="Dialogue/10"]
+[editable path="Dialogue/11"]
+[editable path="Dialogue/12"]
+[editable path="Dialogue/13"]
+[editable path="Dialogue/14"]

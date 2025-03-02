@@ -2,6 +2,7 @@ extends MarginContainer
 
 @export_file("*.tscn") var main_scene_path: String = ""
 @export_file("*.tscn") var back_scene_path: String = ""
+@export_file("*.tscn") var tutorial_scene_path: String = ""
 
 @export_group("Easy Parameters")
 @export var easy_min_num_harmonics: int = 2
@@ -20,10 +21,11 @@ extends MarginContainer
 
 @onready var main_scene: Main = load(main_scene_path).instantiate()
 @onready var back_scene: Control = load(back_scene_path).instantiate()
+@onready var tutorial_scene: Control = load(tutorial_scene_path).instantiate()
 @onready var scene_transition_service: SceneTransitionService = ServiceProvider.get_service("SceneTransitionService")
 
 func _on_tutorial_button_pressed():
-	pass # Replace with function body.
+	scene_transition_service.zoom_in(self, tutorial_scene)
 
 func _on_easy_button_pressed():
 	main_scene.num_target_harmonics = randi_range(easy_min_num_harmonics, easy_max_num_harmonics)

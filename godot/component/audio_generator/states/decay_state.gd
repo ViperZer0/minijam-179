@@ -18,7 +18,6 @@ var current_amplitude: float = 1.0
 
 func enter():
 	super.enter()
-	print("Decay!")
 	decay_time = audio_generator.decay
 	sustain_level = audio_generator.sustain
 

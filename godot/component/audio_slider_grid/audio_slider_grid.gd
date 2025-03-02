@@ -17,6 +17,22 @@ func _ready():
 func has_changed() -> bool:
 	return _value_changed
 
+# Set the sliders to where they would be with this set of harmonics
+func set_harmonics(harmonics: Harmonics) -> void:
+	# In theory we could generate more sliders if the amount of harmonics is different but man let's just say they're the same okay?
+	assert(num_harmonics == get_children().size())
+	# How about this, we'll also accept LESS harmonics than we need.
+	# Yah
+	assert(num_harmonics > harmonics.harmonics.size())
+	var harmonic_index: int = 0
+	for child: Node in get_children():
+		if child.is_in_group("sliders"):
+			var slider: VSlider = child
+			var harmonic = harmonics.find_harmonic_index(harmonic_index)
+			if harmonic != null:
+				slider.value = harmonics.find_harmonic_index(harmonic_index).harmonic_strength
+			harmonic_index += 1
+
 func get_harmonics() -> Harmonics:
 	var harmonics: Array[Harmonic]
 	var harmonic_index: int = 0
@@ -25,6 +41,8 @@ func get_harmonics() -> Harmonics:
 			# We know this child is a VSlider
 			var slider: VSlider = child
 			# Idk why but we can't inline this
+			# I know why we couldn't inline it btw,
+			# we totally can now
 			var h = Harmonic.new(harmonic_index, slider.value)
 			harmonics.append(h)
 			harmonic_index += 1
