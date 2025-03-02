@@ -6,4 +6,4 @@
 script = ExtResource("1_lvy7s")
 min_num_harmonics = 4
 max_num_harmonics = 7
-error_margin = 0.01
+error_margin = 0.011
