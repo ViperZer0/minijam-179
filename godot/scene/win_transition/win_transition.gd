@@ -4,9 +4,14 @@ class_name WinTransition
 @export var merge_amount: float = 0.0
 @export var main_transparency: float:
 	get:
-		return main.modulate.a
+		if main:
+			return main.modulate.a
+		else:
+			# Idk??
+			return 0.0
 	set(value):
-		main.modulate.a = value
+		if main:
+			main.modulate.a = value
 
 @export var main: Control
 
