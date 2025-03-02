@@ -14,5 +14,5 @@
 - [x] About page
 - [ ] Flesh out background
 - [x] Add resource for difficulty modifiers
-- [ ] Add swoosh to SceneTransitionService
+- [x] Add swoosh to SceneTransitionService
 - [x] Add some ambient background music
