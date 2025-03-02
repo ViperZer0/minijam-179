@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dev5r2iew5g13"]
+[gd_scene load_steps=10 format=3 uid="uid://dev5r2iew5g13"]
 
 [ext_resource type="Script" path="res://scene/win_transition/win_transition.gd" id="1_ljpqh"]
 [ext_resource type="PackedScene" uid="uid://cp1b50qlsicsu" path="res://component/audio_visualizer/audio_visualizer.tscn" id="2_wq4we"]
+[ext_resource type="PackedScene" uid="uid://c4crw1xwvc5ki" path="res://component/sound_button/sound_button.tscn" id="3_wl82o"]
 
 [sub_resource type="Animation" id="Animation_ey60c"]
 length = 0.001
@@ -28,6 +29,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -50)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_g0qaf"]
@@ -88,7 +113,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_0g3em"]
 resource_name = "merge_visualizers_2"
-length = 3.0
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -138,12 +163,40 @@ tracks/3/keys = {
 "values": [-1.0, -1.0, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_s4t77"]
+resource_name = "show_win_screen"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -50), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2yasm"]
 _data = {
 "RESET": SubResource("Animation_ey60c"),
 "flip_user_visualizer": SubResource("Animation_g0qaf"),
 "merge_visualizers": SubResource("Animation_ru7to"),
-"merge_visualizers_2": SubResource("Animation_0g3em")
+"merge_visualizers_2": SubResource("Animation_0g3em"),
+"show_win_screen": SubResource("Animation_s4t77")
 }
 
 [node name="WinTransition" type="Control"]
@@ -154,6 +207,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ljpqh")
+main_transparency = 1.0
+main_scene_path = "res://scene/main/main.tscn"
+difficulty_scene_path = "res://scene/difficulty_select/difficulty_select.tscn"
 
 [node name="RandomToneVisualizer" parent="." instance=ExtResource("2_wq4we")]
 unique_name_in_owner = true
@@ -181,5 +237,45 @@ libraries = {
 }
 next/merge_visualizers = &"merge_visualizers"
 
+[node name="MarginContainer" type="MarginContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LargeLabel"
+text = "Good Job!"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TryAgainButton" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_wl82o")]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Try Again"
+
+[node name="SelectDifficulty" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_wl82o")]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Select Difficulty"
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/TryAgainButton" to="." method="_on_try_again_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SelectDifficulty" to="." method="_on_select_difficulty_pressed"]
