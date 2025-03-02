@@ -26,6 +26,9 @@ var _y_scaling: float = 1.0
 
 @onready var line: Line2D = $Line2D
 
+func _ready() -> void:
+	get_viewport().size_changed.connect(_on_viewport_size_changed)
+
 #func _process(_delta) -> void:
 	#calc_line()
 
@@ -57,3 +60,7 @@ func calc_line() -> void:
 		# Then we multiply that by the horizontal scale
 		var x = float(i) / float(resolution) * horiz_scale
 		line.add_point(Vector2(x, y))
+
+# Recalculate the line points when the viewport size changes
+func _on_viewport_size_changed() -> void:
+	calc_line()
