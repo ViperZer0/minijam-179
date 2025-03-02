@@ -88,6 +88,14 @@ func _set_scene_opacity(scene: Control, opacity: float) -> void:
 	scene.modulate.a = opacity
 
 func _on_animation_player_animation_finished(_anim_name: StringName):
-	# Unloading old scene
-	from_scene.queue_free()
-	from_scene = null
+	# unload last scene unless unloading was disabled and we'll be going back to it.
+	if _unload_last_scene:
+		# Unloading old scene
+		from_scene.queue_free()
+		from_scene = null
+
+	# We do still want to remove it from the tree I think???
+	# Note that this won't call _ready() and stuff a second time.
+	else:
+		get_tree().root.remove_child(from_scene)
+

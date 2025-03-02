@@ -15,6 +15,7 @@ theme_override_constants/margin_right = 128
 theme_override_constants/margin_bottom = 16
 script = ExtResource("1_2ku48")
 main_scene_path = "res://scene/difficulty_select/difficulty_select.tscn"
+settings_scene_path = "res://scene/settings/settings.tscn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -39,7 +40,7 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 256
 theme_override_constants/margin_bottom = 16
 
-[node name="SoundButton" parent="VBoxContainer/MarginContainer" instance=ExtResource("1_baogr")]
+[node name="StartButton" parent="VBoxContainer/MarginContainer" instance=ExtResource("1_baogr")]
 layout_mode = 2
 text = "Start"
 
@@ -50,7 +51,7 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 256
 theme_override_constants/margin_bottom = 128
 
-[node name="SoundButton" parent="VBoxContainer/MarginContainer2" instance=ExtResource("1_baogr")]
+[node name="SettingsButton" parent="VBoxContainer/MarginContainer2" instance=ExtResource("1_baogr")]
 layout_mode = 2
 text = "Settings"
 
@@ -62,5 +63,6 @@ size_flags_vertical = 8
 text = "Quit
 "
 
-[connection signal="pressed" from="VBoxContainer/MarginContainer/SoundButton" to="." method="_on_sound_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
