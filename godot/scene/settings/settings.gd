@@ -38,3 +38,8 @@ func _on_music_slider_value_changed(value:float):
 func _on_back_button_pressed():
 	# go back to wherever we cane from
 	scene_transition_service.reverse_last_zoom()
+
+func _on_enable_mouse_effects_toggled(toggled_on:bool):
+	# Is this a mistake?
+	Background.emitter_enabled = toggled_on
+

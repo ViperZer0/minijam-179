@@ -1,4 +1,13 @@
 extends ColorRect
+
+@export var emitter_enabled: bool:
+	get:
+		if particle_emitter:
+			return particle_emitter.emitting
+		return false
+	set(value):
+		if particle_emitter:
+			particle_emitter.emitting = value
 @export var emitter_speed: float = 800.0
 
 @onready var particle_emitter: CPUParticles2D = %ParticleEmitter

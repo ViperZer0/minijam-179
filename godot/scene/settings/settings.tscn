@@ -60,6 +60,11 @@ layout_mode = 2
 max_value = 1.0
 step = 0.05
 
+[node name="EnableMouseEffects" type="CheckBox" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Enable Mouse Effects"
+
 [node name="AdvancedAudioLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"LargeLabel"
@@ -120,6 +125,7 @@ text = "Back"
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/ToneSlider" to="." method="_on_tone_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/EnableMouseEffects" to="." method="_on_enable_mouse_effects_toggled"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SampleRateEntry" to="." method="_on_sample_rate_entry_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BufferSizeEntry" to="." method="_on_buffer_size_entry_value_changed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
