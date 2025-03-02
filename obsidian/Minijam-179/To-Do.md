@@ -7,10 +7,10 @@
 - [ ] Handle win screen
 	- [ ] Track score?
 	- [ ] Return to main?
-- [ ] Make tutorial
-- [ ] Add settings window
-	- [ ] SFX and music sliders
-	- [ ] Sample rate, buffer length
+- [x] Make tutorial
+- [x] Add settings window
+	- [x] SFX and music sliders
+	- [x] Sample rate, buffer length
 - [ ] About page
 - [ ] Flesh out background
-- [ ] Add resource for difficulty modifiers
+- [x] Add resource for difficulty modifiers
