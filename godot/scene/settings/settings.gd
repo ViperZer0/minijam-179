@@ -2,6 +2,8 @@ extends MarginContainer
 class_name Settings
 
 @onready var global_settings: AudioSignalGeneratorGlobalSettingsService = ServiceProvider.get_service("AudioSignalGeneratorGlobalSettingsService")
+@onready var scene_transition_service: SceneTransitionService = ServiceProvider.get_service("SceneTransitionService")
+
 @onready var music_bus_idx: int = AudioServer.get_bus_index("Music")
 @onready var music_slider: HSlider = %MusicSlider
 @onready var tone_bus_idx: int = AudioServer.get_bus_index("GameTones")
@@ -33,3 +35,6 @@ func _on_tone_slider_value_changed(value:float):
 func _on_music_slider_value_changed(value:float):
 	AudioServer.set_bus_volume_db(music_bus_idx, linear_to_db(value))
 
+func _on_back_button_pressed():
+	# go back to wherever we cane from
+	scene_transition_service.reverse_last_zoom()
