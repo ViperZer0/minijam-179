@@ -34,7 +34,8 @@ var _harmonics: Harmonics
 
 @onready var audio_player: AudioStreamPlayer = %AudioPlayer
 ## The sample rate is samples per second
-@onready var sample_rate: int = audio_player.stream.mix_rate
+var sample_rate: int
+
 @onready var state_machine: AdsrStateMachine = %ADSRStateMachine
 ## Current modified amplitude, from 0 to 1
 var current_amplitude: float = 0.0
@@ -50,6 +51,15 @@ var _max_amplitude: float = 0.0
 
 # The currently playing sound
 var playback: AudioStreamGeneratorPlayback
+
+func _ready():
+	# Connect to the AudioSignalGeneratorGlobalSettings for sample rate and buffer size
+	var global_settings: AudioSignalGeneratorGlobalSettingsService = ServiceProvider.get_service("AudioSignalGeneratorGlobalSettingsService")
+	sample_rate = global_settings.sample_rate
+	audio_player.stream.mix_rate = sample_rate
+	audio_player.stream.buffer_length = global_settings.buffer_length
+	global_settings.sample_rate_changed.connect(_on_sample_rate_changed)
+	global_settings.buffer_size_changed.connect(_on_buffer_length_changed)
 
 func _process(_delta: float):
 	if playback != null:
@@ -118,3 +128,10 @@ func _get_amplitude_at(t: float) -> float:
 		return 0.0
 
 	return cur_total / _max_amplitude * amplitude_scaling
+
+func _on_sample_rate_changed(sample_rate: int) -> void:
+	self.sample_rate = sample_rate
+	audio_player.stream.sample_rate = sample_rate
+
+func _on_buffer_length_changed(buffer_length: float) -> void:
+	audio_player.stream.buffer_length = buffer_length

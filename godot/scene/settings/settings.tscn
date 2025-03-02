@@ -23,6 +23,7 @@ theme_override_constants/margin_right = 256
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="MusicLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -85,6 +86,11 @@ text = "Sample Rate
 [node name="SampleRateEntry" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+min_value = 1.0
+max_value = 44100.0
+value = 1.0
+rounded = true
+allow_greater = true
 suffix = "Hz"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
@@ -98,9 +104,9 @@ text = "Buffer Size"
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 5.0
+step = 0.1
 allow_greater = true
 suffix = "s"
-custom_arrow_step = 0.1
 
 [node name="BackButton" parent="." instance=ExtResource("1_afute")]
 layout_mode = 2

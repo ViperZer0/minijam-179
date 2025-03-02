@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://22msa6wnwtal"]
+
+[ext_resource type="Script" path="res://services/audio_signal_generator_global_setting_service/audio_signal_generator_global_settings_service.gd" id="1_3g7ei"]
+
+[node name="AudioSignalGeneratorGlobalSettingsService" type="Node"]
+script = ExtResource("1_3g7ei")
